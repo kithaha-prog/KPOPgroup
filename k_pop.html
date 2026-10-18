@@ -1236,7 +1236,7 @@
             ${g.members.map(m => renderAvatarImg(m, 'w-9 h-9 rounded-full ring-2 ring-[#090912]', false)).join('')}
           </div>
           <div class="text-[11px] text-slate-300 mt-1">
-            ${cb ? `<span class="text-rose-300 font-bold">🔥 打歌期：《${cb.albumTitle}》 Melon #${cb.chartRank}</span>` : `<span class="text-emerald-300">✨ 空白期营业 · 死忠粉 ${formatFans(g.fans)}</span>`}
+            ${cb ? `<span class="text-rose-300 font-bold">🔥 打歌期：《${cb.albumTitle}》 Melon ${cb.chartRank <= 100 ? '#' + cb.chartRank : '榜外'}</span>` : `<span class="text-emerald-300">✨ 空白期营业 · 死忠粉 ${formatFans(g.fans)}</span>`}
           </div>
         `;
       }
@@ -1945,7 +1945,7 @@
       const assignedRoles = Object.values(d.roles);
       const roleCoverageBonus = (assignedRoles.includes('center') ? 5 : 0) + (assignedRoles.includes('vocal') ? 4 : 0) + (assignedRoles.includes('dancer') ? 4 : 0);
       const synergy = Math.min(100, Math.round(avgSkill * 0.88 + roleCoverageBonus));
-      const estFans = Math.round((15000 + synergy * 380 + state.reputation * 65) * (members.length / 4));
+      const estFans = Math.round((4000 + synergy * 110 + state.reputation * 25) * (members.length / 4));
       const debutCost = 60 + members.length * 10;
 
       return { synergy, avgSkill, estFans, debutCost, members };
@@ -2315,7 +2315,7 @@
                 </div>
                 <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
                   <div class="text-[10px] text-slate-400">Melon 音源实时榜</div>
-                  <div class="text-sm font-black text-cyan-300">#${cb.chartRank} ${cb.isPAK ? '🏆PAK' : ''}</div>
+                  <div class="text-sm font-black text-cyan-300">${cb.chartRank <= 100 ? '#' + cb.chartRank : '榜外'} ${cb.isPAK ? '🏆PAK' : ''}</div>
                 </div>
                 <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
                   <div class="text-[10px] text-slate-400">Hanteo 累计销量</div>
@@ -2552,8 +2552,8 @@
         showToast(`🎵 ${g.name} 完成高强度刀群舞合练，团魂默契升至 ${g.synergy}%！`, 'success');
       } else if (type === 'variety') {
         state.ap -= 1;
-        const pay = 22 + Math.round(state.reputation * 0.06);
-        const newFans = randInt(8000, 18000);
+        const pay = 12 + Math.round(state.reputation * 0.03);
+        const newFans = randInt(1500, 4500);
         state.funds += pay;
         g.fans += newFans;
         state.totalFans += newFans;
@@ -2564,7 +2564,7 @@
       } else if (type === 'cf') {
         state.ap -= 1;
         const avgVis = g.members.reduce((a, m) => a + m.visual, 0) / g.members.length;
-        const pay = Math.round((42 + state.reputation * 0.38 + (avgVis - 80) * 2) * 10) / 10;
+        const pay = Math.round((18 + state.reputation * 0.12 + (avgVis - 80)) * 10) / 10;
         state.funds += pay;
         state.reputation += 16;
         g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 10));
@@ -2574,11 +2574,11 @@
         if (state.funds < 6) return showToast('💰 资金不足 ¥6万！', 'warn');
         state.ap -= 1;
         state.funds -= 6;
-        const newFans = 12000 + state.reputation * 30;
+        const newFans = 2500 + state.reputation * 8;
         g.fans += newFans;
         state.totalFans += newFans;
         if (g.activeComeback) {
-          const boost = Math.round(g.activeComeback.sales * 0.2 * 10) / 10;
+          const boost = Math.round(g.activeComeback.sales * 0.06 * 100) / 100;
           g.activeComeback.sales += boost;
           const rev = Math.round(boost * 4.5 * 10) / 10;
           state.funds += rev;
@@ -2605,21 +2605,23 @@
           return showToast('🔒 女团死忠粉达到 5.0万 即可开启万人巡回演唱会！', 'warn');
         }
         state.ap -= 1;
-        const rev = Math.round((155 + (g.fans / 10000) * 16 + state.reputation * 0.4) * 10) / 10;
+        const rev = Math.round((60 + (g.fans / 10000) * 6 + state.reputation * 0.15) * 10) / 10;
         state.funds += rev;
-        g.fans += 32000;
-        state.totalFans += 32000;
+        g.fans += 12000;
+        state.totalFans += 12000;
         state.reputation += 35;
         g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 22));
         addTrendPost(`🏟️ 壮观应援海！${g.name} 世界巡回演唱会首尔站门票3秒售罄！`, '爆 920万', '爆');
         playSound('fanfare');
-        showToast(`🎤 万人世巡大获成功！票房净赚 +¥${rev}万，吸粉 +3.2万！`, 'gold');
+        showToast(`🎤 万人世巡大获成功！票房净赚 +¥${rev}万，吸粉 +1.2万！`, 'gold');
       }
 
       saveState();
       updateGlobalUI();
       renderCurrentTab();
     }
+
+    function fmtS(v) { return v < 1 ? Math.round(v * 10000) + '张' : v.toFixed(1) + '万张'; }
 
     function launchGroupComeback() {
       const g = getActiveGroup();
@@ -2639,19 +2641,19 @@
       const avgSkill = g.members.reduce((a, m) => a + (m.vocal + m.dance + m.rap + m.visual + m.charisma) / 5, 0) / g.members.length;
       const outfitBonus = calcOutfitBonus(g, d);
       const quality = Math.round(avgSkill * 0.7 + prod.bonus + mv.bonus + g.synergy * 0.2 + outfitBonus);
-      let rank = Math.max(1, Math.round(50 - quality * 0.32));
-      if (quality >= 155) rank = 1;
-      const isPAK = rank === 1 && quality >= 170;
-
-      const firstWeekSales = Math.round((1.5 + (g.fans / 10000) * 1.6 + quality / 20) * fmt.salesMult * 10) / 10;
+      let rank = 999;
+      const isPAK = false;
+      const luck = 0.75 + Math.random() * 0.6;   // 本次发行的运气 0.75~1.35
+      const Qn = Math.max(0, Math.min(1.2, (quality - 80) / 100));
+      const fmtMult = 1 + (fmt.salesMult - 1) * 0.2;
+      const firstWeekSales = Math.max(0.1, Math.round(((g.fans / 10000) * (0.25 + 0.55 * Qn) + 0.4) * fmtMult * luck * 100) / 100);
       const revenue = Math.round(firstWeekSales * 4.5 * 10) / 10;
 
       state.funds += revenue;
-      const fanGain = 18000 + quality * 120;
+      const fanGain = Math.round(1500 + quality * 25 + g.fans * 0.03);
       g.fans += fanGain;
       state.totalFans += fanGain;
       state.reputation += 30;
-      if (isPAK) state.pakCount += 1;
 
       const centerMem = g.members.find(m => m.uid === d.centerUid) || g.members[0];
       const cbObj = {
@@ -2665,19 +2667,24 @@
         chartRank: rank,
         isPAK,
         sales: firstWeekSales,
+        fw: firstWeekSales,
+        luck,
+        mvMult: mv.viewsMult,
         trophies: 0,
         weeksLeft: 3
       };
 
       g.activeComeback = cbObj;
       state.discography.unshift(cbObj);
+      if (window.finalizeLaunch) window.finalizeLaunch(cbObj);
+      rank = cbObj.chartRank;
 
-      addTrendPost(`💿 空降 Melon #${rank}！${g.name} 回归新专《${cbObj.albumTitle}》初动突破 ${firstWeekSales}万张，首日结算 +¥${revenue}万！`, '爆 880万', '爆');
+      addTrendPost(rank <= 100 ? `💿 ${g.name} 回归新专《${cbObj.albumTitle}》登陆 Melon #${rank}，首周销量 ${fmtS(firstWeekSales)}` : `💿 ${g.name} 发行《${cbObj.albumTitle}》，首周销量 ${fmtS(firstWeekSales)}，未能进入 Melon TOP100`, rank <= 30 ? '爆 880万' : '热 12万', rank <= 30 ? '爆' : '新专');
       playSound('fanfare');
       saveState();
       updateGlobalUI();
       renderCurrentTab();
-      showToast(`🚀 《${cbObj.albumTitle}》正式发行！首日音源 #${rank}，专辑分成入账 +¥${revenue}万！${outfitBonus > 0 ? ' 打歌服加成 +' + outfitBonus : ''}`, 'gold');
+      showToast(`🚀 《${cbObj.albumTitle}》正式发行！首日音源 ${rank <= 100 ? '#' + rank : '榜外'}，首周 ${fmtS(firstWeekSales)}，专辑分成入账 +¥${revenue}万！${outfitBonus > 0 ? ' 打歌服加成 +' + outfitBonus : ''}`, 'gold');
     }
 
     function runGroupMusicShow() {
@@ -3314,7 +3321,7 @@
       state.groups.forEach(g => {
         if (g.activeComeback) {
           g.activeComeback.weeksLeft -= 1;
-          const extraSales = Math.round(g.activeComeback.sales * 0.2 * 10) / 10;
+          const extraSales = Math.round((g.activeComeback.fw || g.activeComeback.sales) * [0.22, 0.1, 0.05][Math.max(0, Math.min(2, 2 - g.activeComeback.weeksLeft))] * 100) / 100;
           g.activeComeback.sales += extraSales;
           state.funds += Math.round(extraSales * 3.5 * 10) / 10;
           if (g.activeComeback.weeksLeft <= 0) {
@@ -3438,13 +3445,18 @@ function ensureAlbum(cb) {
   const fans = g ? g.fans : 20000;
   cb.relW = cb.relW ?? weekIdx();
   cb.song = { id: 'o' + cb.id, artist: cb.groupName, title: cb.songTitle, own: true, album: cb.albumTitle,
-    H0: Math.max(25, Math.min(125, 22 + cb.quality * .5 + 7 * Math.log10(1 + fans / 1000))),
-    decay: .62 + Math.min(.3, cb.quality / 700), tail: cb.quality / 25,
+    H0: (() => { const ft = Math.log10(1 + fans / 1000), Q = Math.max(0, Math.min(1.2, (cb.quality - 80) / 100)), F = Math.max(0, Math.min(1.2, (ft - 1.3) / 2.4)); return Math.max(2, Math.min(125, (4 + 112 * Math.pow(.4 * Q + .6 * F, 1.7)) * (cb.luck || 1))); })(),
+    decay: .62 + Math.min(.3, cb.quality / 700), tail: cb.quality / 70,
     cas: .45 + Math.min(.5, cb.quality / 400), fan: .6 + Math.min(.4, fans / 400000), glo: .3 + Math.min(.6, fans / 300000), boost: 0 };
   cb.hist = cb.hist || [{ w: 0, sales: cb.sales, melon: cb.chartRank, hot: cb.chartRank, spotify: null, apple: null, yt: 0, spDaily: 0 }];
   cb.yt = cb.yt || 0;
   return cb;
 }
+const mvW = (cb, h) => Math.pow(Math.max(0, h), 1.4) * cb.song.glo * 70000 * (cb.mvMult || 1) * (.9 + Math.random() * .2);
+const spD = (cb, h) => Math.pow(Math.max(0, h), 1.4) * cb.song.glo * 1500 * (.9 + Math.random() * .2);
+const fullRank = (cb, w) => { const ch = CHARTS[0], arr = allSongs().map(x => ({ id: x.id, v: score(ch, x, w, false) })).sort((a, b) => b.v - a.v), i = arr.findIndex(o => o.id === cb.song.id); return arr[i].v > 1 ? i + 1 : Math.max(i + 1, 101); };
+window.finalizeLaunch = function (cb) { ensureAlbum(cb); seedFirstWeek(cb); cb.chartRank = fullRank(cb, weekIdx()); const r = (cb.hist[0] || {}).r || {};
+  cb.isPAK = ['melon_top', 'genie', 'bugs', 'flo', 'melon_hot', 'melon_day'].every(id => r[id] === 1); if (cb.isPAK) state.pakCount += 1; };
 const ownH = (cb, w) => { const s = cb.song, k = w - cb.relW; if (k < 0) return 0; return s.H0 * Math.pow(s.decay, k) + s.tail * (k > 0 ? 1 : 0) + (s.boost || 0) * Math.pow(.7, Math.max(0, k - (cb.boostW || 0))) * (k >= (cb.boostW || 0) ? 1 : 0); };
 const allSongs = () => POOL.concat(state.discography.map(cb => { ensureAlbum(cb); return cb.song; }));
 const cbOf = s => state.discography.find(cb => cb.song && cb.song.id === s.id);
@@ -3496,9 +3508,10 @@ window.weeklyChartTick = function () {
     const h = ownH(cb, w), prev = cb.hist[cb.hist.length - 1];
     const weeklySales = Math.max(.02, h * (cb.sales / 400) * (age > 3 ? .5 : 1));
     cb.sales = +(cb.sales + (age <= 3 ? 0 : weeklySales)).toFixed(2);
-    const spDaily = Math.round(h * cb.song.glo * 90000 * (.9 + Math.random() * .2));
-    cb.yt = Math.round(cb.yt + (prev.yt === 0 ? 0 : 0) + h * cb.song.glo * 160000 * 7 * (.9 + Math.random() * .2) + (cb.hist.length === 1 ? 0 : 0));
+    const spDaily = Math.round(spD(cb, h));
+    cb.yt = Math.round(cb.yt + mvW(cb, h));
     const row = { w: age, sales: cb.sales, melon: rankIn(CHARTS[0], cb.song, w), hot: rankIn(CHARTS[1], cb.song, w), spotify: rankIn(CHARTS[8], cb.song, w), apple: rankIn(CHARTS[10], cb.song, w), yt: cb.yt, spDaily, r: allRanks(cb, w) };
+    if (row.melon) cb.chartRank = Math.min(cb.chartRank, row.melon);
     cb.hist.push(row);
     if (cb.hist.length > 80) cb.hist.shift();
     state.funds += Math.round(Math.max(0, 6 - age) * .1 * 10) / 10 + (row.melon ? .4 : 0);
@@ -3509,8 +3522,8 @@ function seedFirstWeek(cb) {
   ensureAlbum(cb);
   if (cb.yt === 0 && cb.hist.length === 1) {
     const w = weekIdx(), h = ownH(cb, w);
-    cb.yt = Math.round(h * cb.song.glo * 160000 * 7);
-    Object.assign(cb.hist[0], { melon: rankIn(CHARTS[0], cb.song, w), hot: rankIn(CHARTS[1], cb.song, w), spotify: rankIn(CHARTS[8], cb.song, w), apple: rankIn(CHARTS[10], cb.song, w), yt: cb.yt, spDaily: Math.round(h * cb.song.glo * 90000), r: allRanks(cb, w) });
+    cb.yt = Math.round(mvW(cb, h));
+    Object.assign(cb.hist[0], { melon: rankIn(CHARTS[0], cb.song, w), hot: rankIn(CHARTS[1], cb.song, w), spotify: rankIn(CHARTS[8], cb.song, w), apple: rankIn(CHARTS[10], cb.song, w), yt: cb.yt, spDaily: Math.round(spD(cb, h)), r: allRanks(cb, w) });
   }
 }
 
@@ -3559,7 +3572,7 @@ window.openAlbumDetail = function (id, keep) {
         <button onclick="closeModal()" class="w-8 h-8 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="grid grid-cols-4 gap-1.5 text-center text-[10px]">
-        <div class="glass-pill rounded-xl p-1.5"><div class="text-slate-400">累计销量</div><div class="font-black text-amber-300 text-[11px]">${cb.sales.toFixed(1)}万张</div></div>
+        <div class="glass-pill rounded-xl p-1.5"><div class="text-slate-400">累计销量</div><div class="font-black text-amber-300 text-[11px]">${fmtS(cb.sales)}</div></div>
         <div class="glass-pill rounded-xl p-1.5"><div class="text-slate-400">MV 播放</div><div class="font-black text-rose-300 text-[11px]">${fmtN(cb.yt)}</div></div>
         <div class="glass-pill rounded-xl p-1.5"><div class="text-slate-400">Melon最高</div><div class="font-black text-cyan-300 text-[11px]">${bestM < 999 ? '#' + bestM : '—'}</div></div>
         <div class="glass-pill rounded-xl p-1.5"><div class="text-slate-400">最新数据</div><div class="font-black text-white text-[11px]">${dates[dates.length - 1].replace(/^\d+年/, '')}</div></div>
@@ -3568,7 +3581,7 @@ window.openAlbumDetail = function (id, keep) {
       <div class="flex flex-wrap gap-1">${chips}</div>
       ${spk('📊 ' + sel.name + ' 名次', h.map(r => rk(r, sel.id)), dates, '#22d3ee', { invert: true, min: 1, max: 100, h: 120, fmt: v => '#' + v })}
       <div class="grid grid-cols-3 gap-2">
-        ${spk('📦 销量', h.map(r => r.sales), dates, '#fbbf24', { fmt: v => v.toFixed(1) + '万张' })}
+        ${spk('📦 销量', h.map(r => r.sales), dates, '#fbbf24', { fmt: fmtS })}
         ${spk('▶️ MV累计', h.map(r => r.yt), dates, '#f43f5e', { fmt: fmtN })}
         ${spk('🎧 Spotify日播', h.map(r => r.spDaily), dates, '#a78bfa', { fmt: fmtN })}
       </div>
@@ -3591,7 +3604,7 @@ function albRow(cb) {
   return `<button onclick="openAlbumDetail(${cb.id})" class="w-full text-left glass-pill rounded-2xl p-3 flex items-center justify-between gap-2 text-xs hover:bg-white/10">
     <div class="min-w-0"><div class="font-black text-white truncate">《${cb.albumTitle}》</div><div class="text-[11px] text-pink-300 truncate">♪ ${cb.songTitle} · C位 ${cb.centerName}</div>
     <div class="text-[10px] text-slate-400 mt-0.5">Melon 现 ${last.melon ? '#' + last.melon : '榜外'} · MV ${fmtN(cb.yt)}</div></div>
-    <div class="text-right shrink-0"><div class="font-black text-cyan-300">最高 #${cb.chartRank}${cb.isPAK ? ' 🏆' : ''}</div><div class="text-[11px] text-amber-300">${cb.sales.toFixed(1)}万张 · ${cb.trophies}冠</div><div class="text-[10px] text-slate-500">走势 ›</div></div></button>`;
+    <div class="text-right shrink-0"><div class="font-black text-cyan-300">最高 ${cb.chartRank <= 100 ? '#' + cb.chartRank : '榜外'}${cb.isPAK ? ' 🏆' : ''}</div><div class="text-[11px] text-amber-300">${fmtS(cb.sales)} · ${cb.trophies}冠</div><div class="text-[10px] text-slate-500">走势 ›</div></div></button>`;
 }
 
 window.renderGroupAlbums = function (g) {
@@ -3635,7 +3648,7 @@ renderGroupsTab = function () {
         return `<button onclick="pickGroup('${g.id}')" class="glass-panel rounded-3xl p-4 text-left hover:border-pink-400/50 border border-transparent transition ${g.activeComeback ? 'stage-active-glow' : ''}">
           <div class="flex items-center justify-between"><div class="text-base font-black text-white">${g.name}</div>${g.activeComeback ? '<span class="px-2 py-0.5 rounded-full bg-rose-500/25 text-rose-300 text-[10px] font-black">打歌中</span>' : ''}</div>
           <div class="text-[11px] text-pink-300 mt-0.5">${g.fandomName} · 粉丝 ${formatFans(g.fans)} · 团魂 ${g.synergy}%</div>
-          <div class="text-[11px] text-slate-400 mt-2">${g.members.length}名成员 · 出道 ${g.debutDate} · ${albs.length}张专辑 · 累计 ${sales.toFixed(1)}万张</div></button>`; }).join('')}</div></div>`;
+          <div class="text-[11px] text-slate-400 mt-2">${g.members.length}名成员 · 出道 ${g.debutDate} · ${albs.length}张专辑 · 累计 ${fmtS(sales)}</div></button>`; }).join('')}</div></div>`;
   }
   state.activeGroupId = viewGroup;
   const g = getActiveGroup(), albs = state.discography.filter(c => c.groupName === g.name);
@@ -3643,9 +3656,9 @@ renderGroupsTab = function () {
   const peak = albs.length ? Math.min(...albs.map(c => c.chartRank)) : null;
   const top = `<div class="mb-4 flex flex-wrap items-center gap-2"><button onclick="pickGroup(null)" class="px-3 py-1.5 rounded-xl glass-pill text-xs font-black text-slate-200">← 返回女团列表</button>
     <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">专辑 <b class="text-white">${albs.length}</b> 张</span>
-    <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">累计销量 <b class="text-amber-300">${albs.reduce((a, c) => a + c.sales, 0).toFixed(1)}万</b></span>
+    <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">累计销量 <b class="text-amber-300">${fmtS(albs.reduce((a, c) => a + c.sales, 0))}</b></span>
     <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">MV 总播放 <b class="text-rose-300">${fmtN(albs.reduce((a, c) => a + (c.yt || 0), 0))}</b></span>
-    <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">Melon 最高 <b class="text-cyan-300">${peak ? '#' + peak : '—'}</b></span></div>`;
+    <span class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-slate-300">Melon 最高 <b class="text-cyan-300">${peak && peak <= 100 ? '#' + peak : (peak ? '榜外' : '—')}</b></span></div>`;
   return top + supportHtml(g) + html + `<div id="albumsBox" class="mt-4">${renderGroupAlbums(g)}</div>` + honorHtml(g);
 };
 
@@ -3698,22 +3711,22 @@ window.weeklyChartTick = function () {
   state.discography.forEach(cb => { const r = (cb.hist[cb.hist.length - 1] || {}).r; if (!r || cb.akWeek === w) return;
     if (['melon_top','genie','bugs','flo'].every(id => r[id] === 1)) {
       const pak = r.melon_hot === 1 && r.melon_day === 1; cb.akWeek = w; state.akCount++;
-      const g = state.groups.find(x => x.name === cb.groupName); if (g) { g.fans += 8000; state.totalFans += 8000; } state.funds += 15;
+      const g = state.groups.find(x => x.name === cb.groupName); if (g) { g.fans += 3000; state.totalFans += 3000; } state.funds += 15;
       addTrendPost(`🎯 ${cb.groupName}《${cb.songTitle}》${pak ? '完成【Perfect All-Kill】！' : '达成【All-Kill】！'}四大音源站同时登顶，奖金 +¥15万`, '爆 600万', 'AK'); } });
   const AW = { 1: '金唱片奖', 6: '夏日音乐大赏', 11: 'Melon 音乐大奖' }, key = y * 100 + m;
   if (AW[m] && state.lastAwardKey !== key) { state.lastAwardKey = key;
     state.awardQueue = state.groups.filter(g => state.discography.some(c => c.groupName === g.name && w - c.relW <= 52)).map(g => g.id); state.awardQueue = state.awardQueue.length ? [{ gids: state.awardQueue, y, name: AW[m] }] : []; }
 };
 const awardsHtml = () => (state.awards && state.awards.length ? `<div class="glass-panel rounded-3xl p-4"><div class="text-xs font-black text-white mb-2">🏆 颁奖荣誉 · All-Kill ${state.akCount || 0} 次</div><div class="flex flex-wrap gap-1.5">${state.awards.slice(0, 4).map(a => `<span class="px-2 py-1 rounded-lg bg-amber-500/15 text-amber-200 text-[10px] font-bold">${a.y} ${a.name}·${a.cat} ${a.group}</span>`).join('')}</div></div>` : '');
-const SUP = { stream: { n: '📡 流媒体应援', c: 6, d: '最新专辑热度 +15%' }, ad: { n: '🚇 地铁大屏应援', c: 10, d: '粉丝 +8000' }, meet: { n: '💌 粉丝见面会', c: 14, d: '团魂 +4%，粉丝 +5000' } };
+const SUP = { stream: { n: '📡 流媒体应援', c: 6, d: '最新专辑热度 +15%' }, ad: { n: '🚇 地铁大屏应援', c: 10, d: '粉丝 +2000' }, meet: { n: '💌 粉丝见面会', c: 14, d: '团魂 +4%，粉丝 +1500' } };
 window.supportHtml = g => `<div id="supportBox" class="glass-panel rounded-2xl p-3 mb-4"><div class="text-xs font-black text-white mb-2">📣 粉丝应援 <span class="text-[10px] text-slate-400 font-normal">${g.supportWeek === weekIdx() ? '本周已应援' : '每周限一次'}</span></div><div class="flex flex-wrap gap-2">${Object.entries(SUP).map(([k, v]) => `<button onclick="fanSupport('${k}')" class="px-3 py-1.5 rounded-xl glass-pill text-[11px] font-bold text-slate-200 text-left">${v.n} ¥${v.c}万<div class="text-[9px] text-slate-400 font-normal">${v.d}</div></button>`).join('')}</div></div>`;
 window.fanSupport = k => { const g = getActiveGroup(), v = SUP[k], w = weekIdx();
   if (!g || g.supportWeek === w) return showToast('⚠️ 本周已经进行过应援', 'warn');
   if (state.funds < v.c) return showToast('💰 资金不足', 'warn');
   state.funds -= v.c; g.supportWeek = w;
   if (k === 'stream') { const cb = state.discography.find(c => c.groupName === g.name); if (cb) { ensureAlbum(cb); cb.song.boost += cb.song.H0 * .15; cb.boostW = Math.max(0, w - cb.relW); } }
-  else if (k === 'ad') { g.fans += 8000; state.totalFans += 8000; }
-  else { g.synergy = Math.min(100, g.synergy + 4); g.fans += 5000; state.totalFans += 5000; }
+  else if (k === 'ad') { g.fans += 2000; state.totalFans += 2000; }
+  else { g.synergy = Math.min(100, g.synergy + 4); g.fans += 1500; state.totalFans += 1500; }
   playSound('success'); saveState(); updateGlobalUI(); renderCurrentTab(); showToast(`${v.n}完成：${v.d}`, 'success'); };
 
 /* ---------- 竞争女团 / 打歌对决 / 颁奖典礼 ---------- */
@@ -3825,18 +3838,19 @@ function settleShow(sh) {
   const gs = promoGroups().filter(g => (W.plan[sh.id] || {})[g.id]);
   if (!gs.length) { W.res[sh.id] = { skip: true, win: '-', own: false, gids: [], noms: [] }; return null; }
   const own = gs.map(g => ownEntry(sh, g, w, ch, top, true)), riv = showRivals(sh, w, b, top);
-  own.concat(riv).forEach(n => n.t += (Math.random() - .5) * 12);   // 现场发挥波动
+  own.concat(riv).forEach(n => n.t += (Math.random() - .5) * 12);
+  if (window.S7) own.forEach(n => { n.t += S7.mod(sh.id, n.gid); });   // 现场发挥波动
   own.sort((x, y) => y.t - x.t); riv.sort((x, y) => y.t - x.t);
   const noms = own.slice(0, 3).concat(riv.slice(0, Math.max(0, 3 - own.length))).sort((x, y) => y.t - x.t);   // 一位候选固定 3 组
   const win = noms[0], outs = [];
   gs.forEach(g => { const cb = g.activeComeback, won = win.own && win.gid === g.id; cb.apps = (cb.apps || 0) + 1;
-    g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 14)); cb.chartRank = Math.max(1, cb.chartRank - (Math.random() < .5 ? 1 : 0));
-    const fg = Math.round((won ? 16000 : 7000) * sh.fm); g.fans += fg; state.totalFans += fg; outs.push({ name: g.name, rank: noms.findIndex(n => n.gid === g.id) + 1, fans: fg });
+    g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 14)); cb.chartRank = Math.min(cb.chartRank, fullRank(cb, w));
+    const fg = Math.round((won ? 3500 : 1500) * sh.fm); g.fans += fg; state.totalFans += fg; outs.push({ name: g.name, rank: noms.findIndex(n => n.gid === g.id) + 1, fans: fg });
     if (won) { cb.trophies += 1; g.trophies += 1; state.totalTrophies += 1; state.showWins[sh.id] = (state.showWins[sh.id] || 0) + 1; (cb.wins = cb.wins || []).push({ s: sh.id, d: state.dateStr });
       if (cb.chartRank === 1 && !cb.isPAK) { cb.isPAK = true; state.pakCount += 1; }
       state.reputation += 22 + sh.rep; state.funds += sh.funds;
       addTrendPost(`🏆 ${g.name}《${cb.songTitle}》在 ${sh.n} 斩获一位奖杯！`, '热 300万', '一位'); showToast(`🏆 ${g.name} 在 ${sh.n} 斩获一位！`, 'gold');
-      if (cb.trophies === 9) { state.funds += 50; g.fans += 30000; state.totalFans += 30000; addTrendPost(`👑 ${g.name}《${cb.songTitle}》集齐九冠，荣获金奖杯！`, '爆 700万', '九冠'); showToast(`👑 《${cb.songTitle}》九冠达成，金奖杯奖金 +¥50万！`, 'gold'); } } });
+      if (cb.trophies === 9) { state.funds += 50; g.fans += 8000; state.totalFans += 8000; addTrendPost(`👑 ${g.name}《${cb.songTitle}》集齐九冠，荣获金奖杯！`, '爆 700万', '九冠'); showToast(`👑 《${cb.songTitle}》九冠达成，金奖杯奖金 +¥50万！`, 'gold'); } } });
   playSound(win.own ? 'fanfare' : 'success');
   W.res[sh.id] = { win: win.name, own: !!win.own, gids: gs.map(g => g.id), outs, noms: noms.map(n => ({ name: n.name, title: n.title, own: !!n.own, gid: n.gid, d: n.d, a: n.a, f: n.f, j: n.j, t: Math.min(100, n.t) })) };
   return W.res[sh.id];
@@ -3844,7 +3858,9 @@ function settleShow(sh) {
 window.settleNext = function () {
   const left = pendingShows(); if (!left.length) return finishSettle();
   if (!SETTLE) SETTLE = { n: 0, total: left.length };
-  const sh = left[0], r = settleShow(sh); if (r) SETTLE.n += 1; else SETTLE.total = Math.max(SETTLE.n, SETTLE.total - 1);
+  const sh = left[0];
+  if (window.S7 && S7.showGate(sh.id, sh.n, sh.sk, Object.keys(swk().plan[sh.id] || {}))) return;
+  const r = settleShow(sh); if (r) SETTLE.n += 1; else SETTLE.total = Math.max(SETTLE.n, SETTLE.total - 1);
   saveState(); updateGlobalUI(); renderCurrentTab();
   if (!r) return settleNext();
   showResult(sh.id, { settle: true });
@@ -3893,8 +3909,8 @@ window.ceremonyNext = function () {
   else if (C.step === 1) C.step = 2;
   else { C.cats.forEach(c => { const wn = c.noms[0];
       c.noms.filter(n => n.own).forEach(n => { const g = state.groups.find(x => x.id === n.gid); if (!g) return;
-        if (n === wn) { state.funds += 30; g.fans += 15000; state.totalFans += 15000; state.reputation += 40; state.awards = state.awards || []; state.awards.unshift({ y: C.y, name: C.name, cat: c.cat, group: g.name, d: state.dateStr }); addTrendPost(`🏆 ${g.name} 荣获 ${C.y}年${C.name}【${c.cat}】！`, '爆 800万', '颁奖'); showToast(`🏆 ${g.name} 获得${C.name}${c.cat}！`, 'gold'); }
-        else { state.funds += 3; g.fans += 2000; state.totalFans += 2000; } }); });
+        if (n === wn) { state.funds += 30; g.fans += 4000; state.totalFans += 4000; state.reputation += 40; state.awards = state.awards || []; state.awards.unshift({ y: C.y, name: C.name, cat: c.cat, group: g.name, d: state.dateStr }); addTrendPost(`🏆 ${g.name} 荣获 ${C.y}年${C.name}【${c.cat}】！`, '爆 800万', '颁奖'); showToast(`🏆 ${g.name} 获得${C.name}${c.cat}！`, 'gold'); }
+        else { state.funds += 3; g.fans += 800; state.totalFans += 800; } }); });
     state.awardQueue.shift(); CER = null; saveState(); updateGlobalUI(); renderCurrentTab(); closeModal(); if (state.awardQueue.length) setTimeout(openCeremony, 300); return; }
   playSound('click'); saveState(); openCeremony();
 };
@@ -3945,7 +3961,7 @@ function fitPage() {
   }
   const kids = [...main.children].flatMap(expand), secs = kids.filter(k => currentTab === 'groups' ? (k.id === 'albumsBox' || (k.classList.contains('glass-panel') && k.id !== 'supportBox')) : k.offsetHeight >= 260);
   const lab = (k, i) => { const t = (k.querySelector('h2,h3') || {}).textContent || '';
-    if (currentTab === 'groups') return /奖项荣誉/.test(t) ? '奖项荣誉' : /发行历史/.test(t) ? '发行历史' : /通告/.test(t) ? '团体通告' : /回归|打歌|企划/.test(t) ? '回归企划' : i === 0 ? '团体概览' : '分区' + (i + 1);
+    if (currentTab === 'groups') return /单飞活动/.test(t) ? '单飞活动' : /粉丝运营/.test(t) ? '粉丝运营' : /奖项荣誉/.test(t) ? '奖项荣誉' : /发行历史/.test(t) ? '发行历史' : /关系联动/.test(t) ? '关系联动' : /通告/.test(t) ? '团体通告' : /回归|打歌|企划/.test(t) ? '回归企划' : i === 0 ? '团体概览' : '分区' + (i + 1);
     return (t.replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, '').replace(/\(.*?\)|（.*?）/g, '').trim()).slice(0, 12) || '分区' + (i + 1); };
   if (secs.length >= 2 && currentTab !== 'charts') {
     const cur = Math.min(SEC[currentTab] || 0, secs.length - 1);
@@ -3978,5 +3994,11 @@ renderCurrentTab();
 </script>
 
 <script src="systems.js"></script>
+<script src="systems2.js"></script>
+<script src="systems3.js"></script>
+<script src="systems4.js"></script>
+<script src="systems5.js"></script>
+<script src="systems6.js"></script>
+<script src="systems7.js"></script>
 </body>
 </html>
