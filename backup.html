@@ -1,0 +1,3409 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>STARLIGHT AGENCY // K-POP 娱乐帝国与女团制作人企划</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800;900&display=swap');
+
+    :root {
+      --bg-obsidian: #06060b;
+      --glass-bg: rgba(20, 20, 34, 0.62);
+      --glass-border: rgba(255, 255, 255, 0.13);
+      --neon-violet: #8b5cf6;
+      --rose-quartz: #f43f5e;
+      --cyber-cyan: #06b6d4;
+      --champagne-gold: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background-color: var(--bg-obsidian);
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(139, 92, 246, 0.20) 0%, transparent 42%),
+        radial-gradient(circle at 88% 82%, rgba(244, 63, 94, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 50% 45%, rgba(6, 182, 212, 0.10) 0%, transparent 50%);
+      font-family: 'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f8fafc;
+    }
+
+    /* Ambient Animated Background Orbs */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+      animation: floatOrb 16s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+      top: -100px;
+      left: -80px;
+    }
+    .orb-2 {
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, #f43f5e 0%, transparent 70%);
+      bottom: -80px;
+      right: -60px;
+      animation-delay: -6s;
+    }
+    .orb-3 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+      top: 36%;
+      left: 42%;
+      opacity: 0.32;
+      animation-delay: -11s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(35px, -35px) scale(1.12); }
+      100% { transform: translate(-25px, 30px) scale(0.92); }
+    }
+
+    /* Modern Luxury Glassmorphism */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.42), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-card-interactive {
+      background: rgba(26, 26, 44, 0.56);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-interactive:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(36, 36, 60, 0.72);
+      transform: translateY(-2px);
+    }
+    .glass-card-interactive:active {
+      transform: scale(0.98);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.065);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Luxury Buttons */
+    .btn-luxury {
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 52%, #f43f5e 100%);
+      box-shadow: 0 6px 22px -3px rgba(236, 72, 153, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-luxury:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 8px 26px -2px rgba(236, 72, 153, 0.68), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    .btn-luxury:active {
+      transform: scale(0.96);
+    }
+
+    .btn-cyber {
+      background: linear-gradient(135deg, #06b6d4 0%, #6366f1 55%, #8b5cf6 100%);
+      box-shadow: 0 6px 20px -3px rgba(6, 182, 212, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-cyber:hover {
+      filter: brightness(1.08);
+    }
+    .btn-cyber:active {
+      transform: scale(0.96);
+    }
+
+    /* Custom Scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+    }
+
+    /* Avatar Frame & Shimmer */
+    /* 头像一律绝对定位铺满父容器：即使父容器尺寸类缺失，也不会被原图撑爆布局 */
+    .avatar-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* Tailwind 默认没有 w-13 / h-13，这里补上 */
+    .portrait-tall { aspect-ratio: 2 / 3; }
+    .w-13 { width: 3.25rem; }
+    .h-13 { height: 3.25rem; }
+
+    .rarity-UR {
+      border-color: rgba(251, 191, 36, 0.75);
+      box-shadow: 0 0 18px rgba(244, 63, 94, 0.35), inset 0 0 12px rgba(251, 191, 36, 0.25);
+    }
+    .rarity-SSR {
+      border-color: rgba(236, 72, 153, 0.65);
+      box-shadow: 0 0 14px rgba(139, 92, 246, 0.3);
+    }
+    .rarity-SR {
+      border-color: rgba(34, 211, 238, 0.5);
+    }
+
+    .stat-bar-fill {
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes stagePulse {
+      0%, 100% { box-shadow: 0 0 18px rgba(244, 63, 94, 0.35), inset 0 0 14px rgba(139, 92, 246, 0.22); }
+      50% { box-shadow: 0 0 28px rgba(6, 182, 212, 0.48), inset 0 0 22px rgba(244, 63, 94, 0.32); }
+    }
+    .stage-active-glow {
+      animation: stagePulse 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="flex flex-col lg:flex-row w-screen h-dvh overflow-hidden relative">
+
+  <!-- Ambient Background Glow Orbs -->
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+
+
+  <!-- =====================================================================
+       LEFT SIDEBAR NAVIGATION (VISIBLE ON TABLET & DESKTOP >= 1024px)
+  ====================================================================== -->
+  <aside class="hidden lg:flex lg:flex-col lg:w-64 xl:w-72 shrink-0 glass-panel border-y-0 border-l-0 z-20 p-4 justify-between">
+    <div class="space-y-5">
+      <!-- Agency Brand Header -->
+      <div onclick="openAgencyEditModal()" class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-white/5 cursor-pointer transition group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-rose-500 p-[1.5px] shadow-lg shadow-fuchsia-500/25 shrink-0">
+          <div class="w-full h-full bg-[#090912] rounded-[14px] flex items-center justify-center">
+            <i class="fa-solid fa-crown text-base text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-pink-300"></i>
+          </div>
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center gap-1.5">
+            <span id="sidebarAgencyName" class="font-black text-base tracking-wider text-white truncate">STARLIGHT 娱乐</span>
+            <i class="fa-solid fa-pen text-[10px] text-white/30 group-hover:text-white/80 transition"></i>
+          </div>
+          <div id="sidebarAgencyTier" class="text-xs text-cyan-300 font-semibold mt-0.5">新锐偶像厂牌</div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Menu (5 Core Modules) -->
+      <nav class="space-y-1.5">
+        <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-3 mb-2">制作人核心工作台</div>
+        <button onclick="switchTab('scouting')" id="desk-nav-scouting" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-compass-drafting text-sm w-4 text-center"></i>星探与选秀中心</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-cyan-300">招募</span>
+        </button>
+
+        <button onclick="switchTab('trainees')" id="desk-nav-trainees" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-user-graduate text-sm w-4 text-center"></i>练习生训练营</span>
+          <span id="deskTraineeCountBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-violet-500/25 text-violet-200 font-extrabold">4人</span>
+        </button>
+
+        <button onclick="switchTab('debut')" id="desk-nav-debut" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-wand-magic-sparkles text-sm w-4 text-center"></i>成团筹备室</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/25 text-pink-200">3~7人</span>
+        </button>
+
+        <button onclick="switchTab('groups')" id="desk-nav-groups" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-compact-disc text-sm w-4 text-center"></i>女团运营与回归</span>
+          <span id="deskGroupCountBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/30 text-rose-200 font-extrabold">0团</span>
+        </button>
+
+        <button onclick="switchTab('trends')" id="desk-nav-trends" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-trophy text-sm w-4 text-center"></i>热搜与荣誉图鉴</span>
+          <span id="deskTrophyBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/25 text-amber-300 font-extrabold">🏆0</span>
+        </button>
+      </nav>
+
+      <!-- Custom Avatar Studio Quick Entry -->
+      <div class="glass-pill rounded-2xl p-3.5 space-y-2 border border-pink-500/25">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-extrabold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-camera-retro text-pink-400"></i> 立绘素材库
+          </span>
+          <span class="text-[10px] text-emerald-300 font-semibold">本地素材库</span>
+        </div>
+        <p class="text-[11px] text-slate-300/85 leading-relaxed">
+          每位艺人、每套服装的立绘都放在 portraits 文件夹里，素材库可检查缺图并一键复制生成提示词。
+        </p>
+        <button onclick="openAvatarManagerModal()" class="w-full py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-pink-200 border border-white/15 transition">
+          <i class="fa-solid fa-images mr-1"></i> 打开立绘素材库
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Sidebar Controls -->
+    <div class="space-y-2 pt-3 border-t border-white/10">
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSound()" class="flex-1 py-2 rounded-xl glass-pill text-xs font-bold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition">
+          <i class="fa-solid fa-volume-high text-cyan-300" id="deskSoundIcon"></i>
+          <span>舞台音效</span>
+        </button>
+        <button onclick="openSettingsModal()" class="flex-1 py-2 rounded-xl glass-pill text-xs font-bold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition">
+          <i class="fa-solid fa-sliders text-violet-300"></i>
+          <span>存档设置</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =====================================================================
+       CENTER COLUMN: TOP STATUS BAR + MAIN ADAPTIVE WORKSPACE
+  ====================================================================== -->
+  <div class="flex-1 flex flex-col h-dvh min-w-0 relative z-10 overflow-hidden">
+
+    <!-- Top Responsive Agency Header -->
+    <header class="glass-panel border-t-0 border-x-0 px-3.5 py-2.5 lg:px-6 lg:py-3.5 shrink-0 z-20">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <!-- Mobile Brand & Timeline / Desktop Timeline & Quick Guidance -->
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div onclick="openAgencyEditModal()" class="lg:hidden w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-rose-500 p-[1.5px] shrink-0 cursor-pointer">
+            <div class="w-full h-full bg-[#090912] rounded-[10px] flex items-center justify-center">
+              <i class="fa-solid fa-crown text-xs text-pink-300"></i>
+            </div>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <h1 onclick="openAgencyEditModal()" id="mobileAgencyName" class="lg:hidden font-black text-sm tracking-wider text-white truncate cursor-pointer">STARLIGHT 娱乐</h1>
+              <span id="headerTimeline" class="text-xs lg:text-sm font-extrabold text-cyan-300 bg-cyan-500/15 border border-cyan-400/30 px-2.5 py-0.5 rounded-full">
+                2026年1月1日 · 第1周
+              </span>
+              <span id="headerMonthlyEvalNotice" class="hidden sm:inline-flex text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 font-bold">
+                <i class="fa-solid fa-star mr-1"></i>可举行月末考核
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Action Controls: Avatar Manager (Mobile), Settings, Next Week -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button onclick="openAvatarManagerModal()" title="更换人物头像/立绘" class="lg:hidden w-8 h-8 rounded-xl glass-pill flex items-center justify-center text-pink-300 hover:text-white active:scale-90 transition">
+            <i class="fa-solid fa-camera-retro text-xs"></i>
+          </button>
+          <button onclick="toggleSound()" title="音效开关" class="lg:hidden w-8 h-8 rounded-xl glass-pill flex items-center justify-center text-cyan-300 hover:text-white active:scale-90 transition">
+            <i class="fa-solid fa-volume-high text-xs" id="mobSoundIcon"></i>
+          </button>
+          <button onclick="openSettingsModal()" title="设置与存档" class="lg:hidden w-8 h-8 rounded-xl glass-pill flex items-center justify-center text-slate-300 hover:text-white active:scale-90 transition">
+            <i class="fa-solid fa-sliders text-xs"></i>
+          </button>
+          <button onclick="advanceNextWeek()" class="btn-luxury px-3.5 py-1.5 lg:px-5 lg:py-2 rounded-xl font-black text-xs lg:text-sm text-white flex items-center gap-1.5 shadow-lg">
+            <span>推进下一周</span>
+            <i class="fa-solid fa-forward-step text-[11px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Core Agency Resource Metrics Bar -->
+      <div class="grid grid-cols-4 gap-1.5 sm:gap-3 mt-2.5">
+        <div class="glass-pill rounded-xl px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] lg:text-xs text-slate-400">本周行动力 AP</div>
+            <div class="font-black text-xs sm:text-sm lg:text-base text-white mt-0.5" id="statAP">5 / 5</div>
+          </div>
+          <div id="apDots" class="hidden sm:flex gap-1"></div>
+          <i class="fa-solid fa-bolt text-amber-400 text-xs sm:hidden"></i>
+        </div>
+
+        <div class="glass-pill rounded-xl px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center justify-between">
+          <div class="min-w-0">
+            <div class="text-[10px] lg:text-xs text-slate-400">公司资金池</div>
+            <div class="font-black text-xs sm:text-sm lg:text-base text-emerald-300 truncate mt-0.5" id="statFunds">¥200.0万</div>
+          </div>
+          <i class="fa-solid fa-coins text-emerald-400 text-xs lg:text-base shrink-0 ml-1"></i>
+        </div>
+
+        <div class="glass-pill rounded-xl px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center justify-between">
+          <div class="min-w-0">
+            <div class="text-[10px] lg:text-xs text-slate-400">练习生 / 已成团</div>
+            <div class="font-black text-xs sm:text-sm lg:text-base text-pink-300 truncate mt-0.5" id="statRoster">4人 / 0团</div>
+          </div>
+          <i class="fa-solid fa-users-viewfinder text-pink-400 text-xs lg:text-base shrink-0 ml-1"></i>
+        </div>
+
+        <div class="glass-pill rounded-xl px-2.5 py-1.5 lg:px-3.5 lg:py-2 flex items-center justify-between">
+          <div class="min-w-0">
+            <div class="text-[10px] lg:text-xs text-slate-400">厂牌声望 / 粉丝</div>
+            <div class="font-black text-xs sm:text-sm lg:text-base text-violet-300 truncate mt-0.5" id="statRep">100 · 0粉</div>
+          </div>
+          <i class="fa-solid fa-fire-flame-curved text-violet-400 text-xs lg:text-base shrink-0 ml-1"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Adaptive Content Area -->
+    <main id="mainContent" class="flex-1 overflow-y-auto custom-scroll p-3.5 sm:p-5 lg:p-6 pb-24 lg:pb-8">
+      <!-- Dynamic Content Rendered via JS -->
+    </main>
+
+    <!-- Mobile Bottom Glass Navigation Bar (Hidden on >= 1024px) -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-30 glass-panel border-b-0 border-x-0 rounded-t-2xl px-2 py-1.5">
+      <div class="grid grid-cols-5 gap-1">
+        <button onclick="switchTab('scouting')" id="mob-nav-scouting" class="flex flex-col items-center justify-center py-1.5 rounded-xl transition-all">
+          <i class="fa-solid fa-compass-drafting text-xs mb-0.5"></i>
+          <span class="text-[10px] font-bold">星探选秀</span>
+        </button>
+        <button onclick="switchTab('trainees')" id="mob-nav-trainees" class="flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative">
+          <i class="fa-solid fa-user-graduate text-xs mb-0.5"></i>
+          <span class="text-[10px] font-bold">练习生营</span>
+        </button>
+        <button onclick="switchTab('debut')" id="mob-nav-debut" class="flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs mb-0.5"></i>
+          <span class="text-[10px] font-bold">筹备成团</span>
+        </button>
+        <button onclick="switchTab('groups')" id="mob-nav-groups" class="flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative">
+          <i class="fa-solid fa-compact-disc text-xs mb-0.5"></i>
+          <span class="text-[10px] font-bold">女团回归</span>
+          <span id="mobGroupDot" class="hidden absolute top-1 right-3 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+        </button>
+        <button onclick="switchTab('trends')" id="mob-nav-trends" class="flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative">
+          <i class="fa-solid fa-trophy text-xs mb-0.5"></i>
+          <span class="text-[10px] font-bold">热搜荣誉</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- =====================================================================
+       RIGHT LIVE FEED SIDEBAR (VISIBLE ON XL WIDESCREEN >= 1280px)
+  ====================================================================== -->
+  <aside class="hidden xl:flex xl:flex-col xl:w-80 shrink-0 glass-panel border-y-0 border-r-0 z-20 p-4 justify-between overflow-y-auto custom-scroll">
+    <div class="space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-pink-300 flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish animate-pulse"></i> 韩网世趋与公司动态
+        </span>
+        <span class="text-[10px] text-slate-400">REAL-TIME</span>
+      </div>
+
+      <!-- Active Group Quick Status Box -->
+      <div id="rightSidebarGroupBox" class="glass-pill rounded-2xl p-3.5"></div>
+
+      <!-- Live Netizen Hot Posts -->
+      <div>
+        <div class="text-[11px] font-bold text-slate-300 mb-2 flex items-center justify-between">
+          <span>🔥 Pann / Theqoo 实时热帖</span>
+          <button onclick="switchTab('trends')" class="text-[10px] text-cyan-300 hover:underline">查看全部</button>
+        </div>
+        <div id="rightSidebarTrends" class="space-y-2"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Producer Tip -->
+    <div class="glass-pill rounded-2xl p-3 mt-4 text-[11px] text-slate-300/90 space-y-1">
+      <div class="font-extrabold text-amber-300 flex items-center gap-1.5">
+        <i class="fa-solid fa-lightbulb"></i> 制作人经营指南
+      </div>
+      <p class="leading-relaxed text-slate-400">
+        1. 先在<strong>「星探选秀」</strong>发掘高潜力苗子<br/>
+        2. 在<strong>「练习生营」</strong>特训并通过月末考核升至 A 级<br/>
+        3. 在<strong>「筹备成团」</strong>挑选 3~7 人分配 C位与担当正式出道！
+      </p>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Layer -->
+  <div id="toastContainer" class="pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 w-full max-w-md px-4"></div>
+
+  <!-- Universal Modal Overlay -->
+  <div id="modalOverlay" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
+    <div id="modalBox" class="glass-panel w-full max-w-2xl max-h-[88dvh] rounded-3xl p-5 overflow-y-auto custom-scroll border border-white/25 shadow-2xl">
+      <!-- Dynamic Modal Content -->
+    </div>
+  </div>
+
+  <script src="./roster.js"></script>
+  <script src="./outfits.js"></script>
+  <script>
+    /********************************************************************
+     * 1. 固定人物名册 + 本地立绘 (IDOL_ROSTER)
+     * ------------------------------------------------------------------
+     * 每位艺人都是固定的：本名、艺名、立绘一一对应，不再需要上传图片。
+     * 立绘放在与本 HTML 同级的 portraits 文件夹里，文件名 = 艺名小写：
+     *     portraits/stella.png   portraits/chloe.png   portraits/vex.png ...
+     * 支持 .png / .jpg / .jpeg / .webp（按此顺序依次尝试）。
+     * 缺图时自动显示首字母剪影，不会影响游戏。
+     * 想增加人物：只需改同级的 roster.js，不用动这里。
+     ********************************************************************/
+    const PORTRAIT_DIR = './portraits/';
+    const PORTRAIT_EXTS = ['png', 'jpg', 'jpeg', 'webp'];
+
+    // 名册数据在同级的 roster.js 里（要加人只改它）
+    const IDOL_ROSTER = (typeof IDOL_ROSTER_DATA !== 'undefined' ? IDOL_ROSTER_DATA : [])
+      .map((r, i) => ({ id: i, file: (r.file || r.stageName).toLowerCase(), ...r }));
+
+    /********************************************************************
+     * 服装 / 立绘素材库
+     * 路径规则： portraits/<艺名小写>/<服装id>.png
+     * 查找顺序： 该服装 → default → 旧版 portraits/<艺名小写>.png → 剪影
+     * 服装目录在同级的 outfits.js 里（要加服装只改它）
+     ********************************************************************/
+    const OUTFITS = (typeof OUTFIT_DATA !== 'undefined' && OUTFIT_DATA.length)
+      ? OUTFIT_DATA
+      : [{ id: 'default', name: '日常练习服', type: 'daily', price: 0 }];
+    const OUTFIT_BY_ID = Object.fromEntries(OUTFITS.map(o => [o.id, o]));
+
+    function portraitCandidates(file, outfitId) {
+      const base = PORTRAIT_DIR + encodeURIComponent(file);
+      const ids = (outfitId && outfitId !== 'default') ? [outfitId, 'default'] : ['default'];
+      const urls = [];
+      ids.forEach(id => PORTRAIT_EXTS.forEach(ext => urls.push(`${base}/${encodeURIComponent(id)}.${ext}`)));
+      PORTRAIT_EXTS.forEach(ext => urls.push(`${base}.${ext}`));   // 旧版单文件
+      return urls;
+    }
+
+    // 图片加载失败时：依次尝试下一个候选路径，全部失败再用剪影兜底
+    function onPortraitError(img) {
+      const next = (parseInt(img.dataset.idx, 10) || 0) + 1;
+      const list = img.dataset.file ? portraitCandidates(img.dataset.file, img.dataset.outfit) : [];
+      if (next < list.length) {
+        img.dataset.idx = next;
+        img.src = list[next];
+      } else {
+        img.onerror = null;
+        img.src = img.dataset.fallback;
+      }
+    }
+
+    // 缺图时的 SVG 时尚剪影兜底
+    function makeFallbackAvatarDataUri(name = 'IDOL', accentColor = '#ec4899') {
+      const firstChar = (name || 'S').charAt(0);
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1e1b4b"/>
+            <stop offset="55%" stop-color="${accentColor}"/>
+            <stop offset="100%" stop-color="#090912"/>
+          </linearGradient>
+        </defs>
+        <rect width="200" height="200" fill="url(#g)"/>
+        <circle cx="100" cy="78" r="36" fill="rgba(255,255,255,0.22)"/>
+        <path d="M40 190 C45 135 155 135 160 190 Z" fill="rgba(255,255,255,0.18)"/>
+        <text x="100" y="92" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="900" font-size="34">${firstChar}</text>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+
+    // 统一渲染人物头像：按人物 id 固定对应名册里的立绘；outfitOverride 可临时指定服装
+    // allowClickChange = true 时，点击头像打开该艺人的完整档案
+    function renderAvatarImg(person, sizeClasses = 'w-16 h-16 rounded-2xl', allowClickChange = false, outfitOverride = null) {
+      const idol = IDOL_ROSTER[person.id];
+      const file = idol ? idol.file : '';
+      const outfit = outfitOverride || person.outfit || 'default';
+      const fallback = makeFallbackAvatarDataUri(person.name, person.color || '#ec4899');
+      const src = file ? portraitCandidates(file, outfit)[0] : fallback;
+      const rarityBorder = person.potential === 'UR' ? 'rarity-UR border-2' : person.potential === 'SSR' ? 'rarity-SSR border-2' : 'border border-white/20';
+      const clickable = allowClickChange && person.uid;
+      const clickAttr = clickable ? `onclick="event.stopPropagation(); openProfileModal('${person.uid}')" title="查看完整档案"` : '';
+
+      return `
+        <div ${clickAttr} class="relative overflow-hidden shrink-0 bg-slate-900 ${sizeClasses} ${rarityBorder} ${clickable ? 'cursor-pointer' : ''}">
+          <img src="${src}" alt="${person.name}" class="avatar-img" loading="lazy"
+               data-file="${file}" data-outfit="${outfit}" data-idx="0" data-fallback="${fallback}" onerror="onPortraitError(this)" />
+        </div>
+      `;
+    }
+
+    // 可点击的艺人名字：点开完整档案
+    function nameLink(p, extraClass = '') {
+      return `<span onclick="event.stopPropagation(); openProfileModal('${p.uid}')" class="cursor-pointer hover:underline decoration-pink-400 underline-offset-2 ${extraClass}" title="查看完整档案">${p.name}</span>`;
+    }
+
+    // 该服装这个人能不能穿（专属服装只给指定的人）
+    function outfitAvailableFor(o, person) {
+      if (!o.only) return true;
+      const idol = IDOL_ROSTER[person.id];
+      return !!idol && idol.file === o.only;
+    }
+
+    // 从名册里取一位当前不在公司/候选池里的固定艺人；名册用完则生成无立绘的路人
+    function pickRosterIdol() {
+      const used = new Set([...state.trainees, ...state.auditionCandidates].map(p => p.id));
+      const pool = IDOL_ROSTER.filter(r => !used.has(r.id));
+      if (pool.length > 0) return pool[Math.floor(Math.random() * pool.length)];
+      const extraId = 1000 + state.nextCharId++;
+      const surname = TRAINEE_SURNAMES[Math.floor(Math.random() * TRAINEE_SURNAMES.length)];
+      const given = TRAINEE_GIVEN_NAMES[Math.floor(Math.random() * TRAINEE_GIVEN_NAMES.length)];
+      return { id: extraId, name: surname + given, stageName: 'TRAINEE' + (extraId - 1000), file: '' };
+    }
+
+    /********************************************************************
+     * 2. WEB AUDIO SYNTHESIZER (音效反馈系统)
+     ********************************************************************/
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playSound(type = 'click') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        if (type === 'click') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(640, now);
+          osc.frequency.exponentialRampToValueAtTime(900, now + 0.05);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.06);
+        } else if (type === 'success') {
+          [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+            gain.gain.setValueAtTime(0.07, now + idx * 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.22);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.05);
+            osc.stop(now + idx * 0.05 + 0.24);
+          });
+        } else if (type === 'fanfare') {
+          [440, 554.37, 659.25, 880, 1108.73].forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.065);
+            gain.gain.setValueAtTime(0.09, now + idx * 0.065);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.065 + 0.36);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.065);
+            osc.stop(now + idx * 0.065 + 0.38);
+          });
+        } else if (type === 'warn') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(150, now + 0.16);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.19);
+        }
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const cls = soundEnabled ? 'fa-solid fa-volume-high text-cyan-300' : 'fa-solid fa-volume-xmark text-slate-500';
+      const dIcon = document.getElementById('deskSoundIcon');
+      const mIcon = document.getElementById('mobSoundIcon');
+      if (dIcon) dIcon.className = cls;
+      if (mIcon) mIcon.className = cls + ' text-xs';
+      if (soundEnabled) playSound('click');
+      showToast(soundEnabled ? '🔊 舞台音效已开启' : '🔇 音效已静音', 'info');
+    }
+
+    /********************************************************************
+     * 3. GAME DATABASES (星探地点、选秀词条、概念、职位担当)
+     ********************************************************************/
+    const SCOUT_LOCATIONS = [
+      {
+        id: 'hongdae',
+        name: '首尔 · 弘大街头路演区',
+        tag: '舞蹈 & 说唱特化',
+        cost: 15,
+        apCost: 1,
+        icon: 'fa-bolt-lightning',
+        color: 'from-rose-500 to-amber-500',
+        desc: '聚集无数地下街舞Dancer与街头Rapper，极易发掘舞台表现力炸裂的苗子。',
+        statBias: { vocal: 0, dance: 12, rap: 10, visual: 4, charisma: 10 },
+        urChance: 0.15,
+        ssrChance: 0.45
+      },
+      {
+        id: 'cheongdam',
+        name: '首尔 · 清潭洞名门艺高',
+        tag: '神颜门面 & 科班全能',
+        cost: 28,
+        apCost: 1,
+        icon: 'fa-crown',
+        color: 'from-violet-500 to-pink-500',
+        desc: '翰林艺高与首尔公演艺术高中校门口，盛产天生骨相神颜与科班六边形ACE。',
+        statBias: { vocal: 8, dance: 8, rap: 5, visual: 15, charisma: 10 },
+        urChance: 0.25,
+        ssrChance: 0.50
+      },
+      {
+        id: 'shibuya',
+        name: '东京 · 涩谷表参道时尚圈',
+        tag: '日系直拍神颜 & 氛围感',
+        cost: 24,
+        apCost: 1,
+        icon: 'fa-wand-magic-sparkles',
+        color: 'from-pink-500 to-indigo-500',
+        desc: '发掘日籍杂志模特与元气少女，拥有极高直拍吸粉体质与海外人气加成。',
+        statBias: { vocal: 3, dance: 9, rap: 2, visual: 14, charisma: 14 },
+        urChance: 0.20,
+        ssrChance: 0.48
+      },
+      {
+        id: 'bangkok',
+        name: '曼谷 · 国际流行舞蹈学院',
+        tag: '人间节拍器 & 东南亚顶流',
+        cost: 22,
+        apCost: 1,
+        icon: 'fa-fire-flame-curved',
+        color: 'from-cyan-500 to-emerald-500',
+        desc: '盛产手长脚长、卡点精准如刀的泰籍主舞与Swag女王，海外世巡票房神器。',
+        statBias: { vocal: 2, dance: 15, rap: 12, visual: 8, charisma: 11 },
+        urChance: 0.20,
+        ssrChance: 0.48
+      },
+      {
+        id: 'berklee',
+        name: '波士顿/LA · 欧美音乐夏令营',
+        tag: '天籁大主唱 & 创作才女',
+        cost: 32,
+        apCost: 1,
+        icon: 'fa-microphone-lines',
+        color: 'from-blue-500 to-violet-600',
+        desc: '寻访拥有海豚音高音与欧美浑厚嗓音的实力派大主唱，打歌安可全开麦定海神针。',
+        statBias: { vocal: 18, dance: 4, rap: 8, visual: 8, charisma: 10 },
+        urChance: 0.28,
+        ssrChance: 0.52
+      },
+      {
+        id: 'global_dm',
+        name: '全球 SNS 紫微星私信挖掘',
+        tag: '高风险高上限 · 野生紫微星',
+        cost: 45,
+        apCost: 1,
+        icon: 'fa-gem',
+        color: 'from-amber-400 via-rose-500 to-purple-600',
+        desc: '大数据检索全球百万粉神颜素人与天才少女，最高概率直接挖到 UR 级天生巨星！',
+        statBias: { vocal: 10, dance: 10, rap: 10, visual: 14, charisma: 15 },
+        urChance: 0.42,
+        ssrChance: 0.50
+      }
+    ];
+
+    const SURVIVAL_PROGRAMS = [
+      {
+        id: 'monthly_audition',
+        name: '公司月度公开选秀 (Open Audition)',
+        cost: 25,
+        apCost: 1,
+        candidateCount: 3,
+        minTier: 'SR',
+        desc: '从全国投递的数千份视频简历中严选 3 名进入最终面试，可任意签约心仪苗子。'
+      },
+      {
+        id: 'produce_survival',
+        name: '大型女团生存战《PRODUCE STARLIGHT》',
+        cost: 68,
+        apCost: 1,
+        candidateCount: 5,
+        minTier: 'SSR',
+        desc: '斥资联合电视台举办现象级选秀节目，一次性发掘 5 名高热度 SSR/UR 级准出道练习生，并提升公司声望！'
+      }
+    ];
+
+    const TRAINEE_SURNAMES = ['沈', '姜', '崔', '林', '柳', '金', '朴', '郑', '韩', '宋', '尹', '张', '白', '权', '裴', '宁', '叶', '苏', '宫脇', '中村'];
+    const TRAINEE_GIVEN_NAMES = ['星梨', '予希', '飒', '沐桃', '知珉', '冬雪', '采源', '允真', '一叶', '恩采', '元英', '宥真', '瑞渊', '礼志', '留真', '彩领', '有娜', '智秀', '珍妮', '丽莎', '彩英', '思成', '语嫣', '清雅', '樱花', '琉璃', '千寻', '星野'];
+    const STAGE_NAMES = ['STELLA', 'CHLOE', 'VEX', 'MOMO', 'KARINA', 'WINTER', 'GISELLE', 'NING', 'WONYOUNG', 'YUJIN', 'LEESEO', 'REI', 'GAEUL', 'LIZ', 'YEJI', 'RYUJIN', 'YUNA', 'CHAERYEONG', 'SAKURA', 'KAZUHA', 'EUNCHAE', 'MINJI', 'HANNI', 'HAERIN', 'DANIELLE', 'NOVA', 'ARIA', 'LUNA', 'SERA', 'ZOE'];
+    const NATIONALITIES = ['🇰🇷 首尔', '🇨🇳 上海', '🇰🇷 釜山', '🇯🇵 东京', '🇨🇳 北京', '🇹🇭 曼谷', '🇺🇸 洛杉矶', '🇦🇺 墨尔本', '🇰🇷 大邱', '🇯🇵 京都'];
+    const SPECIAL_TRAITS = [
+      { name: '#天生骨相门面', desc: '视觉上限高，画报与机场神图吸粉+15%' },
+      { name: '#海豚音大魔王', desc: '全开麦安可舞台稳如CD，音源口碑加成' },
+      { name: '#人体节拍器', desc: '刀群舞核心，舞蹈练习与舞台表现力加成' },
+      { name: '#百万直拍匠人', desc: '天生的镜头捕捉者，打歌舞台额外吸粉' },
+      { name: '#清冷财阀千金', desc: '高奢品牌挚友，接拍高定代言费+15%' },
+      { name: '#六边形全能ACE', desc: '声乐、舞蹈、Rap全线均衡无短板' },
+      { name: '#果汁感忙内', desc: '综艺与签售会营业神器，团魂凝聚力提升' },
+      { name: '#低音炮Rap女王', desc: 'Girl Crush与赛博概念Killing Part绝配' }
+    ];
+
+    const GROUP_POSITIONS = [
+      { id: 'center', name: '👑 不动C位 (Center)', badge: 'bg-rose-500/25 text-rose-200 border-rose-400/40' },
+      { id: 'leader', name: '🧭 队长 (Leader)', badge: 'bg-amber-500/25 text-amber-200 border-amber-400/40' },
+      { id: 'vocal', name: '🎤 第一主唱 (Main Vocal)', badge: 'bg-violet-500/25 text-violet-200 border-violet-400/40' },
+      { id: 'dancer', name: '⚡ 主舞担当 (Main Dancer)', badge: 'bg-cyan-500/25 text-cyan-200 border-cyan-400/40' },
+      { id: 'rapper', name: '🔥 主说唱 (Main Rapper)', badge: 'bg-emerald-500/25 text-emerald-200 border-emerald-400/40' },
+      { id: 'visual', name: '💎 官方门面 (Visual)', badge: 'bg-pink-500/25 text-pink-200 border-pink-400/40' },
+      { id: 'maknae', name: '🍑 元气忙内 (Maknae)', badge: 'bg-orange-500/25 text-orange-200 border-orange-400/40' }
+    ];
+
+    const CONCEPTS = {
+      girlcrush: {
+        id: 'girlcrush',
+        name: 'Girl Crush 甜酷千禧',
+        tag: '#Y2K辣妹 #高燃刀群舞',
+        badgeBg: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+        weights: { vocal: 0.15, dance: 0.30, rap: 0.25, visual: 0.15, charisma: 0.15 },
+        desc: '强烈的重低音鼓点与千禧辣妹美学，极其考验主舞、Rap与舞台气场。'
+      },
+      cyber: {
+        id: 'cyber',
+        name: 'Cyber 赛博旷野 Y3K',
+        tag: '#未来AI神颜 #金属电子实验',
+        badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+        weights: { vocal: 0.20, dance: 0.25, rap: 0.20, visual: 0.20, charisma: 0.15 },
+        desc: '宏大的元宇宙旷野世界观与超现实视觉，深受海外与Z世代追捧。'
+      },
+      fairy: {
+        id: 'fairy',
+        name: 'Dreamy 清冷仙气',
+        tag: '#月光神女 #空灵交响弦乐',
+        badgeBg: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+        weights: { vocal: 0.35, dance: 0.15, rap: 0.05, visual: 0.30, charisma: 0.15 },
+        desc: '唯美梦幻的艺术电影质感，全靠天籁高音与神颜门面撑起意境。'
+      },
+      highteen: {
+        id: 'highteen',
+        name: 'High-Teen 青春元气',
+        tag: '#清凉果汁 #Melon逆行神曲',
+        badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+        weights: { vocal: 0.25, dance: 0.25, rap: 0.10, visual: 0.25, charisma: 0.15 },
+        desc: '极具中毒性的轻快副歌，音源大众度极高，极易在各大榜单逆袭。'
+      },
+      royal: {
+        id: 'royal',
+        name: 'Royal 暗黑高定女王',
+        tag: '#奢华歌剧 #全员恶女气场',
+        badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+        weights: { vocal: 0.25, dance: 0.20, rap: 0.20, visual: 0.15, charisma: 0.20 },
+        desc: '管弦乐交响与高定礼服美学，完美展现登顶女团的统治力。'
+      }
+    };
+
+    const ALBUM_FORMATS = {
+      single: { id: 'single', name: '单曲专辑 (Single)', cost: 28, salesMult: 1.0 },
+      mini: { id: 'mini', name: '迷你专辑 (Mini EP)', cost: 68, salesMult: 1.75 },
+      full: { id: 'full', name: '正规专辑 (Full Album)', cost: 135, salesMult: 2.65 }
+    };
+
+    const PRODUCERS = {
+      indie: { id: 'indie', name: '新锐独立制作人', cost: 20, bonus: 12 },
+      gold: { id: 'gold', name: '首尔金牌作曲家', cost: 60, bonus: 28 },
+      grammy: { id: 'grammy', name: '格莱美神曲制造机', cost: 130, bonus: 52 }
+    };
+
+    const MV_BUDGETS = {
+      studio: { id: 'studio', name: '质感棚拍美学 MV', cost: 20, bonus: 10, viewsMult: 1.0 },
+      cinema: { id: 'cinema', name: '实景电影级叙事 MV', cost: 55, bonus: 26, viewsMult: 1.7 },
+      cg: { id: 'cg', name: '跨国CG旷野大制作', cost: 120, bonus: 48, viewsMult: 2.8 }
+    };
+
+    const GROUP_NAME_IDEAS = [
+      { group: 'LUMIÈRE', fandom: 'AURORA' },
+      { group: 'AESPERA', fandom: 'MYSTIC' },
+      { group: 'VALKYRIE', fandom: 'VALHALLA' },
+      { group: 'SERAPHIM', fandom: 'FEARLESS' },
+      { group: 'VELVET MOON', fandom: 'ECLIPSE' },
+      { group: 'CELESTIA', fandom: 'STARDUST' },
+      { group: 'NYX SIREN', fandom: 'ABYSS' },
+      { group: 'PEACH CRUSH', fandom: 'FIZZ' }
+    ];
+
+    const ALBUM_TITLE_IDEAS = [
+      { album: 'SUPERNOVA', song: 'Hyperbolic Love' },
+      { album: 'MIDNIGHT VENOM', song: 'Black Swan Kiss' },
+      { album: 'CYBER ODYSSEY', song: 'Illusion Glass' },
+      { album: 'ROSY MIRAGE', song: 'Lucid Butterfly' },
+      { album: 'NEON PARADISE', song: 'Magnetic Heart' },
+      { album: 'BORN TO CROWN', song: 'Queendom Fire' }
+    ];
+
+    /********************************************************************
+     * 4. INITIAL GAME STATE & LOCALSTORAGE PERSISTENCE
+     ********************************************************************/
+    function createInitialTrainees() {
+      return [
+        {
+          uid: 'tr_init_1',
+          id: 0,
+          name: '沈星梨',
+          stageName: 'STELLA',
+          age: 18,
+          nation: '🇨🇳 上海',
+          potential: 'UR',
+          grade: 'A',
+          vocal: 78,
+          dance: 85,
+          rap: 74,
+          visual: 92,
+          charisma: 88,
+          stamina: 95,
+          stress: 10,
+          trait: '#天生骨相门面',
+          bestConcept: 'girlcrush',
+          color: '#f43f5e',
+          status: 'trainee', // 'trainee' or 'debuted'
+          groupId: null
+        },
+        {
+          uid: 'tr_init_2',
+          id: 1,
+          name: '姜予希',
+          stageName: 'CHLOE',
+          age: 19,
+          nation: '🇰🇷 首尔',
+          potential: 'UR',
+          grade: 'A',
+          vocal: 93,
+          dance: 72,
+          rap: 64,
+          visual: 86,
+          charisma: 82,
+          stamina: 92,
+          stress: 12,
+          trait: '#海豚音大魔王',
+          bestConcept: 'fairy',
+          color: '#8b5cf6',
+          status: 'trainee',
+          groupId: null
+        },
+        {
+          uid: 'tr_init_3',
+          id: 2,
+          name: '崔飒',
+          stageName: 'VEX',
+          age: 18,
+          nation: '🇰🇷 釜山',
+          potential: 'SSR',
+          grade: 'A',
+          vocal: 70,
+          dance: 91,
+          rap: 89,
+          visual: 85,
+          charisma: 90,
+          stamina: 96,
+          stress: 8,
+          trait: '#人体节拍器',
+          bestConcept: 'cyber',
+          color: '#06b6d4',
+          status: 'trainee',
+          groupId: null
+        },
+        {
+          uid: 'tr_init_4',
+          id: 3,
+          name: '林沐桃',
+          stageName: 'MOMO',
+          age: 16,
+          nation: '🇯🇵 东京',
+          potential: 'SSR',
+          grade: 'B',
+          vocal: 74,
+          dance: 79,
+          rap: 68,
+          visual: 90,
+          charisma: 86,
+          stamina: 98,
+          stress: 5,
+          trait: '#果汁感忙内',
+          bestConcept: 'highteen',
+          color: '#f59e0b',
+          status: 'trainee',
+          groupId: null
+        }
+      ];
+    }
+
+    function createInitialState() {
+      return {
+        agencyName: 'STARLIGHT 娱乐',
+        // 游戏起始：2026年1月1日（全年第1周）。真实日历，每次推进 7 天
+        dateStr: '2026-01-01',
+        year: 2026,
+        month: 1,
+        day: 1,
+        week: 1,   // 全年第几周（1月1~7日 = 第1周）
+        ap: 5,
+        maxAp: 5,
+        funds: 220.0, // 单位：万
+        reputation: 120,
+        totalFans: 5000,
+        totalTrophies: 0,
+        pakCount: 0,
+        daesangCount: 0,
+        nextCharId: 4,
+        trainees: createInitialTrainees(),
+        auditionCandidates: [], // 当前待签约的星探/选秀候选人池
+        selectedTraineeUid: 'tr_init_1',
+        traineeFilter: 'all',
+        // 成团筹备室草稿
+        debutDraft: {
+          groupName: 'LUMIÈRE',
+          fandomName: 'AURORA',
+          concept: 'girlcrush',
+          brandColor: 'from-violet-500 via-fuchsia-500 to-rose-500',
+          selectedUids: ['tr_init_1', 'tr_init_2', 'tr_init_3', 'tr_init_4'],
+          roles: {
+            'tr_init_1': 'center',
+            'tr_init_2': 'vocal',
+            'tr_init_3': 'dancer',
+            'tr_init_4': 'maknae'
+          }
+        },
+        // 已出道女团列表
+        groups: [],
+        activeGroupId: null,
+        wardrobe: ['default'],   // 公司衣橱：已购买的服装 id（全员共用）
+        // 回归专辑企划草稿
+        comebackDraft: {
+          albumTitle: 'SUPERNOVA',
+          songTitle: 'Hyperbolic Love',
+          format: 'mini',
+          concept: 'girlcrush',
+          producer: 'gold',
+          mvBudget: 'cinema',
+          centerUid: null,
+          killingUid: null,
+          stageOutfits: {}   // 打歌服装：成员 uid -> 服装 id
+        },
+        discography: [],
+        trends: [
+          {
+            id: 1,
+            title: '✨ 重磅证券情报：前顶流制作人创立 STARLIGHT 娱乐，首批公开练习生颜值实力引发韩网轰动！',
+            heat: '342.8万',
+            tag: '热议',
+            comments: ['这四位公开练习生直接原地出道也是完颜团吧！', '听说他们还在全球招人，期待最终出道组阵容！']
+          },
+          {
+            id: 2,
+            title: '🔥 选秀生存战《PRODUCE STARLIGHT》即将海选，谁将夺得不动C位？',
+            heat: '198.5万',
+            tag: '情报',
+            comments: ['制作人快去清潭洞和弘大挖人！', '想看7人大型刀群舞女团或者4人精品Blackpink风！']
+          }
+        ]
+      };
+    }
+
+    let state = loadState();
+    let currentTab = 'scouting';
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem('STARLIGHT_AGENCY_SAVE_V2');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          // 旧存档里可能带有上传的 base64 头像：清掉，统一改用固定立绘
+          [parsed.trainees, parsed.auditionCandidates].forEach(list => (list || []).forEach(p => { delete p.avatarUrl; }));
+          // 旧存档没有真实日期：按“每月4周”折算已经过的周数，换成 2026-01-01 之后的真实日期
+          if (!parsed.dateStr) {
+            const y = (parsed.year && parsed.year < 1000) ? parsed.year + 2025 : (parsed.year || 2026);
+            const elapsedWeeks = (y - 2026) * 48 + ((parsed.month || 1) - 1) * 4 + ((parsed.week || 1) - 1);
+            parsed.dateStr = dateStrAddDays('2026-01-01', elapsedWeeks * 7);
+          }
+          const loaded = { ...createInitialState(), ...parsed };
+          syncDateFields(loaded);
+          if (!Array.isArray(loaded.wardrobe) || !loaded.wardrobe.includes('default')) loaded.wardrobe = ['default', ...(loaded.wardrobe || [])];
+          if (!loaded.comebackDraft.stageOutfits) loaded.comebackDraft.stageOutfits = {};
+          return loaded;
+        }
+      } catch (e) {}
+      return createInitialState();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('STARLIGHT_AGENCY_SAVE_V2', JSON.stringify(state));
+      } catch (e) {
+        showToast('⚠️ 浏览器本地存储空间接近上限', 'warn');
+      }
+    }
+
+    function randInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    /********************************************************************
+     * 真实日历：state.dateStr = 'YYYY-MM-DD'，每次推进 7 天
+     * year / month / day / week 都由 dateStr 推算（week = 全年第几周）
+     ********************************************************************/
+    function dateStrAddDays(dateStr, days) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d + days));
+      return dt.getUTCFullYear() + '-' + String(dt.getUTCMonth() + 1).padStart(2, '0') + '-' + String(dt.getUTCDate()).padStart(2, '0');
+    }
+
+    function syncDateFields(st) {
+      const [y, m, d] = st.dateStr.split('-').map(Number);
+      const dayOfYear = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 1)) / 86400000) + 1;
+      st.year = y;
+      st.month = m;
+      st.day = d;
+      st.week = Math.floor((dayOfYear - 1) / 7) + 1;
+    }
+
+    // 本周是否是所在月份的最后一周（下一周就会跨月）
+    function isLastWeekOfMonth() {
+      return parseInt(dateStrAddDays(state.dateStr, 7).split('-')[1], 10) !== state.month;
+    }
+
+    function formatGameDate() {
+      return `${state.year}年${state.month}月${state.day}日 · 第${state.week}周`;
+    }
+
+    // 国旗 emoji 在 Windows 上会显示成 "JP/AU" 字母，统一改成小标签 + 城市，不换行
+    const FLAG_CODES = { '🇰🇷': 'KR', '🇨🇳': 'CN', '🇯🇵': 'JP', '🇹🇭': 'TH', '🇺🇸': 'US', '🇦🇺': 'AU' };
+    function formatNation(n) {
+      const parts = String(n).split(' ');
+      const code = FLAG_CODES[parts[0]];
+      if (!code) return n;
+      return `<span class="inline-flex items-center gap-1 whitespace-nowrap"><span class="px-1 rounded bg-white/10 text-[9px] font-bold tracking-wider text-slate-300">${code}</span>${parts.slice(1).join(' ')}</span>`;
+    }
+
+    // 概念简称：取中文名之前的英文部分（Girl Crush / Cyber / Dreamy / High-Teen / Royal）
+    function conceptShort(c) {
+      return c ? String(c.name).split(/\s+(?=[\u4e00-\u9fff])/)[0] : '';
+    }
+
+    function formatFans(num) {
+      if (num >= 10000) return (num / 10000).toFixed(1) + '万';
+      return num.toLocaleString();
+    }
+
+    function calcTraineeGrade(t) {
+      const avg = (t.vocal + t.dance + t.rap + t.visual + t.charisma) / 5;
+      if (avg >= 88) return 'S';
+      if (avg >= 80) return 'A';
+      if (avg >= 72) return 'B';
+      if (avg >= 62) return 'C';
+      return 'D';
+    }
+
+    function getActiveTrainees() {
+      return state.trainees.filter(t => t.status === 'trainee');
+    }
+
+    function getPersonByUid(uid) {
+      const inPool = state.trainees.find(t => t.uid === uid);
+      if (inPool) return inPool;
+      const inCand = state.auditionCandidates.find(c => c.uid === uid);
+      if (inCand) return inCand;
+      for (const g of state.groups) {
+        const m = g.members.find(mem => mem.uid === uid);
+        if (m) return m;
+      }
+      return null;
+    }
+
+    /********************************************************************
+     * 5. TOP HEADER, SIDEBAR & NAVIGATION RENDERING
+     ********************************************************************/
+    function getAgencyTier(rep, fans) {
+      if (rep >= 1000 || fans >= 500000) return '👑 跨国四大社级娱乐巨头';
+      if (rep >= 500 || fans >= 180000) return '💎 韩国一线上市娱乐大厂';
+      if (rep >= 240 || fans >= 60000) return '✨ 大势金牌偶像制作公司';
+      return '🌱 新锐高定偶像厂牌';
+    }
+
+    function updateGlobalUI() {
+      const activeTrainees = getActiveTrainees();
+      const tierText = getAgencyTier(state.reputation, state.totalFans);
+
+      document.getElementById('sidebarAgencyName').textContent = state.agencyName;
+      document.getElementById('mobileAgencyName').textContent = state.agencyName;
+      document.getElementById('sidebarAgencyTier').textContent = tierText;
+      document.getElementById('headerTimeline').textContent = formatGameDate();
+
+      // 月末考核提醒：每月最后一周显示
+      const evalBadge = document.getElementById('headerMonthlyEvalNotice');
+      if (evalBadge) {
+        evalBadge.classList.toggle('hidden', !isLastWeekOfMonth());
+      }
+
+      document.getElementById('statAP').textContent = `${state.ap} / ${state.maxAp}`;
+      const apDots = document.getElementById('apDots');
+      if (apDots) {
+        apDots.innerHTML = '';
+        for (let i = 0; i < state.maxAp; i++) {
+          const d = document.createElement('span');
+          d.className = `w-2 h-2 rounded-full ${i < state.ap ? 'bg-amber-400 shadow-[0_0_6px_#fbbf24]' : 'bg-white/15'}`;
+          apDots.appendChild(d);
+        }
+      }
+
+      document.getElementById('statFunds').textContent = `¥${state.funds.toFixed(1)}万`;
+      document.getElementById('statRoster').textContent = `${activeTrainees.length}练习生 / ${state.groups.length}女团`;
+      document.getElementById('statRep').textContent = `${state.reputation} · ${formatFans(state.totalFans)}`;
+
+      // Badges
+      document.getElementById('deskTraineeCountBadge').textContent = `${activeTrainees.length}人`;
+      document.getElementById('deskGroupCountBadge').textContent = `${state.groups.length}团`;
+      document.getElementById('deskTrophyBadge').textContent = `🏆${state.totalTrophies}`;
+
+      const hasActiveComeback = state.groups.some(g => g.activeComeback);
+      document.getElementById('mobGroupDot').classList.toggle('hidden', !hasActiveComeback);
+
+      // Update Nav Highlight
+      const tabs = ['scouting', 'trainees', 'debut', 'groups', 'trends'];
+      tabs.forEach(t => {
+        const dBtn = document.getElementById(`desk-nav-${t}`);
+        const mBtn = document.getElementById(`mob-nav-${t}`);
+        const isActive = currentTab === t;
+        if (dBtn) {
+          dBtn.className = isActive
+            ? 'w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-black transition-all bg-gradient-to-r from-violet-500/35 to-rose-500/25 text-white border border-pink-400/40 shadow-lg'
+            : 'w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/5';
+        }
+        if (mBtn) {
+          mBtn.className = isActive
+            ? 'flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative bg-gradient-to-b from-violet-500/35 to-rose-500/25 text-white border border-white/20'
+            : 'flex flex-col items-center justify-center py-1.5 rounded-xl transition-all relative text-slate-400 hover:text-slate-200';
+        }
+      });
+
+      renderRightSidebar();
+    }
+
+    function renderRightSidebar() {
+      const groupBox = document.getElementById('rightSidebarGroupBox');
+      const trendsBox = document.getElementById('rightSidebarTrends');
+      if (!groupBox || !trendsBox) return;
+
+      if (state.groups.length === 0) {
+        const activeTrainees = getActiveTrainees();
+        groupBox.innerHTML = `
+          <div class="text-xs font-extrabold text-cyan-300 mb-1 flex items-center justify-between">
+            <span>🌱 出道筹备状态</span>
+            <span>${activeTrainees.length} 名在训</span>
+          </div>
+          <p class="text-[11px] text-slate-300 leading-relaxed mb-2.5">
+            公司尚未推出首支女团。前往「筹备成团」选择 3~7 名练习生即可开启盛大出道 Showcase！
+          </p>
+          <button onclick="switchTab('debut')" class="w-full py-2 rounded-xl btn-luxury text-xs font-black text-white">
+            前往筹备首支女团
+          </button>
+        `;
+      } else {
+        const g = state.groups.find(gr => gr.id === state.activeGroupId) || state.groups[0];
+        const cb = g.activeComeback;
+        groupBox.innerHTML = `
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-black text-white">${g.name} <span class="text-[10px] text-pink-300 font-semibold">(${g.members.length}人团)</span></span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-amber-300 font-bold">🏆 ${g.trophies}一位</span>
+          </div>
+          <div class="flex -space-x-2 overflow-hidden my-2 py-1">
+            ${g.members.map(m => renderAvatarImg(m, 'w-9 h-9 rounded-full ring-2 ring-[#090912]', false)).join('')}
+          </div>
+          <div class="text-[11px] text-slate-300 mt-1">
+            ${cb ? `<span class="text-rose-300 font-bold">🔥 打歌期：《${cb.albumTitle}》 Melon #${cb.chartRank}</span>` : `<span class="text-emerald-300">✨ 空白期营业 · 死忠粉 ${formatFans(g.fans)}</span>`}
+          </div>
+        `;
+      }
+
+      trendsBox.innerHTML = state.trends.slice(0, 4).map((t, i) => `
+        <div class="glass-pill rounded-xl p-2.5">
+          <div class="text-[11px] font-bold text-white leading-snug">
+            <span class="px-1.5 py-0.2 rounded text-[9px] font-black mr-1 ${i === 0 ? 'bg-rose-500 text-white' : 'bg-violet-500/30 text-violet-200'}">${t.tag}</span>
+            ${t.title}
+          </div>
+          <div class="text-[10px] text-rose-300 font-semibold mt-1">🔥 热度 ${t.heat}</div>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tabName) {
+      playSound('click');
+      currentTab = tabName;
+      renderCurrentTab();
+      updateGlobalUI();
+    }
+
+    function renderCurrentTab() {
+      const main = document.getElementById('mainContent');
+      if (currentTab === 'scouting') main.innerHTML = renderScoutingTab();
+      else if (currentTab === 'trainees') main.innerHTML = renderTraineesTab();
+      else if (currentTab === 'debut') main.innerHTML = renderDebutTab();
+      else if (currentTab === 'groups') main.innerHTML = renderGroupsTab();
+      else if (currentTab === 'trends') main.innerHTML = renderTrendsTab();
+    }
+
+    function showToast(msg, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const colors = {
+        info: 'border-cyan-400/50 bg-slate-900/95 text-cyan-200',
+        success: 'border-emerald-400/50 bg-slate-900/95 text-emerald-200',
+        warn: 'border-rose-400/50 bg-slate-900/95 text-rose-200',
+        gold: 'border-amber-400/60 bg-slate-900/95 text-amber-200'
+      };
+      toast.className = `px-4 py-2.5 rounded-2xl border backdrop-blur-xl shadow-2xl text-xs font-bold flex items-center gap-2 transition-all duration-300 ${colors[type] || colors.info}`;
+      toast.innerHTML = `<span>${msg}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        setTimeout(() => toast.remove(), 260);
+      }, 2500);
+    }
+
+    function addTrendPost(title, heat = '360.2万', tag = '热议', comments = null) {
+      state.trends.unshift({
+        id: Date.now(),
+        title,
+        heat,
+        tag,
+        comments: comments || ['STARLIGHT 娱乐的企划审美真的绝了！', '全员实力派，狠狠期待接下来的大动作！']
+      });
+      if (state.trends.length > 12) state.trends.pop();
+    }
+
+    /********************************************************************
+     * 6. TAB 1: 星探与选秀中心 (SCOUTING & AUDITION CENTER)
+     ********************************************************************/
+    function generateCandidate(locationOrProgram, forcedMinTier = null) {
+      const idol = pickRosterIdol();
+      const charId = idol.id;
+      const fullName = idol.name;
+      const stageName = idol.stageName;
+      const nation = NATIONALITIES[Math.floor(Math.random() * NATIONALITIES.length)];
+      const traitObj = SPECIAL_TRAITS[Math.floor(Math.random() * SPECIAL_TRAITS.length)];
+      const conceptKeys = Object.keys(CONCEPTS);
+      const bestConcept = conceptKeys[Math.floor(Math.random() * conceptKeys.length)];
+
+      // Determine Potential Tier (UR / SSR / SR)
+      const roll = Math.random();
+      let potential = 'SR';
+      const urChance = locationOrProgram?.urChance || 0.22;
+      const ssrChance = locationOrProgram?.ssrChance || 0.48;
+      if (roll < urChance) potential = 'UR';
+      else if (roll < urChance + ssrChance) potential = 'SSR';
+      if (forcedMinTier === 'SSR' && potential === 'SR') potential = Math.random() < 0.35 ? 'UR' : 'SSR';
+
+      const baseMin = potential === 'UR' ? 74 : potential === 'SSR' ? 66 : 58;
+      const baseMax = potential === 'UR' ? 86 : potential === 'SSR' ? 79 : 72;
+      const bias = locationOrProgram?.statBias || { vocal: 6, dance: 6, rap: 6, visual: 8, charisma: 8 };
+
+      const vocal = Math.min(98, randInt(baseMin, baseMax) + (bias.vocal || 0));
+      const dance = Math.min(98, randInt(baseMin, baseMax) + (bias.dance || 0));
+      const rap = Math.min(98, randInt(baseMin, baseMax) + (bias.rap || 0));
+      const visual = Math.min(99, randInt(baseMin + 2, baseMax + 3) + (bias.visual || 0));
+      const charisma = Math.min(98, randInt(baseMin, baseMax) + (bias.charisma || 0));
+
+      const colors = ['#f43f5e', '#8b5cf6', '#06b6d4', '#f59e0b', '#ec4899', '#10b981'];
+      const candidate = {
+        uid: 'cand_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+        id: charId,
+        name: fullName,
+        stageName,
+        age: randInt(15, 20),
+        nation,
+        potential,
+        vocal,
+        dance,
+        rap,
+        visual,
+        charisma,
+        stamina: 95,
+        stress: 10,
+        trait: traitObj.name,
+        traitDesc: traitObj.desc,
+        bestConcept,
+        color: colors[charId % colors.length],
+        signFee: potential === 'UR' ? 25 : potential === 'SSR' ? 12 : 5,
+        status: 'candidate'
+      };
+      candidate.grade = calcTraineeGrade(candidate);
+      return candidate;
+    }
+
+    function renderScoutingTab() {
+      return `
+        <div class="space-y-6">
+          <!-- Candidate Audition Stage Results (If Any Pending Candidates) -->
+          ${state.auditionCandidates.length > 0 ? `
+            <div class="glass-panel rounded-3xl p-4 sm:p-5 border-2 border-pink-500/40 stage-active-glow">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                  <span class="px-2.5 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-black uppercase tracking-wider">
+                    AUDITION LIVE · 选秀试镜结果待签约 (${state.auditionCandidates.length}人)
+                  </span>
+                  <h2 class="text-base sm:text-lg font-black text-white mt-1">发现了极具潜力的野生苗子！请选择签约入库或刷新</h2>
+                </div>
+                <button onclick="clearAuditionCandidates()" class="px-3 py-1.5 rounded-xl glass-pill text-xs text-slate-300 hover:text-white">
+                  清空本批候选人
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+                ${state.auditionCandidates.map(c => `
+                  <div class="glass-card-interactive rounded-2xl p-3.5 flex flex-col justify-between border ${c.potential === 'UR' ? 'border-amber-400/60' : 'border-white/15'}">
+                    <div>
+                      <div class="flex items-start gap-3">
+                        ${renderAvatarImg(c, 'w-16 h-16 rounded-2xl', true)}
+                        <div class="flex-1 min-w-0">
+                          <div class="flex items-start justify-between gap-2">
+                            <div class="min-w-0">
+                              <div class="font-black text-sm text-white leading-tight">${nameLink(c)}</div>
+                              <div class="text-[11px] text-pink-300 font-bold tracking-wide leading-tight mt-0.5 break-words">${c.stageName}</div>
+                            </div>
+                            <span class="shrink-0 whitespace-nowrap px-2 py-0.5 rounded-md text-[10px] font-black ${c.potential === 'UR' ? 'bg-gradient-to-r from-amber-300 to-rose-500 text-black' : c.potential === 'SSR' ? 'bg-pink-500/30 text-pink-200 border border-pink-400/40' : 'bg-cyan-500/20 text-cyan-200'}">
+                              ${c.potential} · ${c.grade}级
+                            </span>
+                          </div>
+                          <div class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-slate-400 mt-1.5">
+                            ${formatNation(c.nation)}<span class="text-slate-600">·</span>
+                            <span class="whitespace-nowrap">${c.age}岁</span><span class="text-slate-600">·</span>
+                            <span class="whitespace-nowrap">${conceptShort(CONCEPTS[c.bestConcept])}型</span>
+                          </div>
+                          <div class="mt-1.5 inline-block max-w-full truncate whitespace-nowrap text-[10px] px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-200 border border-violet-400/30 font-semibold">
+                            ${c.trait}
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 5 Mini Stat Pills -->
+                      <div class="grid grid-cols-5 gap-1.5 mt-3 text-center">
+                        <div class="bg-black/35 rounded-lg py-1"><div class="text-[9px] text-slate-400">声乐</div><div class="text-xs font-black text-violet-300">${c.vocal}</div></div>
+                        <div class="bg-black/35 rounded-lg py-1"><div class="text-[9px] text-slate-400">舞蹈</div><div class="text-xs font-black text-rose-300">${c.dance}</div></div>
+                        <div class="bg-black/35 rounded-lg py-1"><div class="text-[9px] text-slate-400">说唱</div><div class="text-xs font-black text-cyan-300">${c.rap}</div></div>
+                        <div class="bg-black/35 rounded-lg py-1"><div class="text-[9px] text-slate-400">视觉</div><div class="text-xs font-black text-amber-300">${c.visual}</div></div>
+                        <div class="bg-black/35 rounded-lg py-1"><div class="text-[9px] text-slate-400">魅力</div><div class="text-xs font-black text-emerald-300">${c.charisma}</div></div>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between gap-2">
+                      <button onclick="signCandidate('${c.uid}')" class="btn-luxury flex-1 py-1.5 px-3 rounded-xl text-xs font-black text-white">
+                        签约入营 (¥${c.signFee}万)
+                      </button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Section 1: Global Street & Academy Scouting -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div>
+                <h2 class="text-sm sm:text-base font-black text-white flex items-center gap-2">
+                  <i class="fa-solid fa-earth-asia text-cyan-400"></i>
+                  全球街头星探与名门艺高挖掘 (Scouting)
+                </h2>
+                <p class="text-xs text-slate-400">派遣资深星探前往各大时尚街区与音乐学院，精准寻找特定特长的野生练习生</p>
+              </div>
+              <span class="text-xs text-amber-300 font-bold">每次派遣消耗 1 AP，产出 2 名高契合度候选人</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+              ${SCOUT_LOCATIONS.map(loc => `
+                <div class="glass-card-interactive rounded-3xl p-4 flex flex-col justify-between relative overflow-hidden">
+                  <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-gradient-to-br ${loc.color} opacity-20 blur-xl pointer-events-none"></div>
+                  <div>
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${loc.color} flex items-center justify-center text-white shadow-lg">
+                        <i class="fa-solid ${loc.icon} text-sm"></i>
+                      </div>
+                      <span class="text-[11px] px-2.5 py-0.5 rounded-full glass-pill text-amber-300 font-bold">
+                        -1 AP · ¥${loc.cost}万
+                      </span>
+                    </div>
+                    <h3 class="font-black text-sm sm:text-base text-white">${loc.name}</h3>
+                    <div class="text-[11px] font-bold text-cyan-300 mt-0.5">${loc.tag} · UR概率 ${Math.round(loc.urChance * 100)}%</div>
+                    <p class="text-xs text-slate-300/85 mt-2 leading-relaxed">${loc.desc}</p>
+                  </div>
+
+                  <button onclick="dispatchScout('${loc.id}')" class="mt-4 w-full py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-black text-white transition flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-magnifying-glass-location text-pink-400"></i>
+                    <span>派遣星探发掘苗子</span>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Section 2: Large-Scale Audition & Survival Show -->
+          <div>
+            <div class="mb-3">
+              <h2 class="text-sm sm:text-base font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-tv text-pink-400"></i>
+                公开选秀与出道生存战企划 (Audition & Survival Show)
+              </h2>
+              <p class="text-xs text-slate-400">一次性海选多名练习生同台竞技，适合快速扩充公司练习生储备池</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${SURVIVAL_PROGRAMS.map(prog => `
+                <div class="glass-panel rounded-3xl p-5 flex flex-col justify-between border border-pink-500/30">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-black border border-pink-400/30">
+                        保底 ${prog.minTier}+ 潜力 · 一次产出 ${prog.candidateCount} 人
+                      </span>
+                      <span class="text-xs font-extrabold text-amber-300">-1 AP · ¥${prog.cost}万</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-black text-white">${prog.name}</h3>
+                    <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${prog.desc}</p>
+                  </div>
+                  <button onclick="launchAuditionProgram('${prog.id}')" class="btn-luxury mt-4 w-full py-3 rounded-2xl text-xs sm:text-sm font-black text-white">
+                    <i class="fa-solid fa-microphone-lines mr-1.5"></i>开启选秀海选舞台
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function dispatchScout(locId) {
+      const loc = SCOUT_LOCATIONS.find(l => l.id === locId);
+      if (!loc) return;
+      if (state.ap < loc.apCost) {
+        playSound('warn');
+        return showToast('⚡ 本周行动力(AP)不足！请点击右上角「推进下一周」。', 'warn');
+      }
+      if (state.funds < loc.cost) {
+        playSound('warn');
+        return showToast(`💰 资金不足 ¥${loc.cost}万！`, 'warn');
+      }
+
+      state.ap -= loc.apCost;
+      state.funds -= loc.cost;
+      const c1 = generateCandidate(loc);
+      const c2 = generateCandidate(loc);
+      state.auditionCandidates = [c1, c2, ...state.auditionCandidates].slice(0, 9);
+
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'smooth' });
+      showToast(`✨ 星探从【${loc.name}】发掘了 ${c1.name}(${c1.potential}) 与 ${c2.name}(${c2.potential})！`, 'gold');
+    }
+
+    function launchAuditionProgram(progId) {
+      const prog = SURVIVAL_PROGRAMS.find(p => p.id === progId);
+      if (!prog) return;
+      if (state.ap < prog.apCost) {
+        playSound('warn');
+        return showToast('⚡ 本周行动力(AP)不足！请推进下一周。', 'warn');
+      }
+      if (state.funds < prog.cost) {
+        playSound('warn');
+        return showToast(`💰 选秀预算不足 ¥${prog.cost}万！`, 'warn');
+      }
+
+      state.ap -= prog.apCost;
+      state.funds -= prog.cost;
+      const newCands = [];
+      for (let i = 0; i < prog.candidateCount; i++) {
+        newCands.push(generateCandidate(SCOUT_LOCATIONS[i % SCOUT_LOCATIONS.length], prog.minTier));
+      }
+      state.auditionCandidates = [...newCands, ...state.auditionCandidates].slice(0, 9);
+
+      if (progId === 'produce_survival') {
+        state.reputation += 25;
+        state.totalFans += 6000;
+        addTrendPost(`🎤 现象级选秀《PRODUCE STARLIGHT》首播引爆韩网，神仙练习生初舞台直拍刷屏！`, '爆 620万', '爆');
+      }
+
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'smooth' });
+      showToast(`🎉 选秀舞台落幕！共有 ${prog.candidateCount} 名优秀练习生等待您签约！`, 'gold');
+    }
+
+    function signCandidate(uid) {
+      const idx = state.auditionCandidates.findIndex(c => c.uid === uid);
+      if (idx === -1) return;
+      const cand = state.auditionCandidates[idx];
+      if (state.funds < cand.signFee) {
+        playSound('warn');
+        return showToast(`💰 签约金不足 ¥${cand.signFee}万！`, 'warn');
+      }
+
+      state.funds -= cand.signFee;
+      cand.status = 'trainee';
+      cand.joinDate = state.dateStr;
+      state.trainees.unshift(cand);
+      state.auditionCandidates.splice(idx, 1);
+      state.selectedTraineeUid = cand.uid;
+
+      playSound('success');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`📝 已成功签约 ${cand.name} (${cand.potential}·${cand.grade}级) 进入公司练习生训练营！`, 'success');
+    }
+
+    function clearAuditionCandidates() {
+      playSound('click');
+      state.auditionCandidates = [];
+      saveState();
+      renderCurrentTab();
+    }
+
+    /********************************************************************
+     * 7. TAB 2: 练习生训练营与月末考核 (TRAINEE POOL & TRAINING CAMP)
+     ********************************************************************/
+    function renderTraineesTab() {
+      const allTrainees = getActiveTrainees();
+      const filtered = allTrainees.filter(t => {
+        if (state.traineeFilter === 'UR') return t.potential === 'UR';
+        if (state.traineeFilter === 'A') return t.grade === 'S' || t.grade === 'A';
+        return true;
+      });
+
+      let selected = allTrainees.find(t => t.uid === state.selectedTraineeUid) || filtered[0] || allTrainees[0];
+      if (selected) state.selectedTraineeUid = selected.uid;
+
+      return `
+        <div class="space-y-5">
+          <!-- Top Bar: Trainee Pool Actions & Monthly Evaluation Banner -->
+          <div class="glass-panel rounded-3xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-user-graduate text-violet-400"></i>
+                STARLIGHT 练习生训练营 (${allTrainees.length} 人在训)
+              </h2>
+              <p class="text-xs text-slate-300 mt-0.5">
+                特训提升五维能力，通过<strong>「月末考核」</strong>晋升 A/S 级。
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="runGroupTraineeClass()" class="glass-card-interactive px-3.5 py-2 rounded-2xl text-xs font-extrabold text-cyan-300 border border-cyan-400/30">
+                <i class="fa-solid fa-people-group mr-1"></i>全营集体大课 (-1 AP · ¥12万)
+              </button>
+              <button onclick="runMonthlyEvaluation()" class="btn-luxury px-4 py-2 rounded-2xl text-xs font-black text-white">
+                <i class="fa-solid fa-award mr-1"></i>举办月末考核评级 (-1 AP)
+              </button>
+            </div>
+          </div>
+
+          ${allTrainees.length === 0 ? `
+            <div class="glass-panel rounded-3xl p-10 text-center space-y-3">
+              <div class="text-3xl">🌱</div>
+              <h3 class="text-base font-black text-white">当前训练营暂无未出道的练习生</h3>
+              <p class="text-xs text-slate-400">所有练习生均已成团出道，或尚未签约新苗子。快去星探与选秀中心发掘新人吧！</p>
+              <button onclick="switchTab('scouting')" class="btn-luxury px-5 py-2.5 rounded-2xl text-xs font-black text-white">
+                前往星探与选秀中心
+              </button>
+            </div>
+          ` : `
+            <!-- Responsive Master-Detail Grid: Left Trainee Cards + Right Selected Trainee Inspector -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+              <!-- Left Column (7 cols on Desktop): Trainee Roster Grid -->
+              <div class="lg:col-span-7 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex gap-1.5">
+                    ${[
+                      { id: 'all', label: `全部 (${allTrainees.length})` },
+                      { id: 'UR', label: 'UR 紫微星' },
+                      { id: 'A', label: 'S / A 级出道圈' }
+                    ].map(f => `
+                      <button onclick="setTraineeFilter('${f.id}')" class="px-3 py-1 rounded-xl text-xs font-bold transition ${state.traineeFilter === f.id ? 'bg-violet-500 text-white' : 'glass-pill text-slate-400 hover:text-white'}">
+                        ${f.label}
+                      </button>
+                    `).join('')}
+                  </div>
+                  <button onclick="switchTab('debut')" class="text-xs font-bold text-pink-300 hover:underline flex items-center gap-1">
+                    <span>选人成团出道</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                  </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  ${filtered.map(t => {
+                    const isSel = selected && selected.uid === t.uid;
+                    const avg = Math.round((t.vocal + t.dance + t.rap + t.visual + t.charisma) / 5);
+                    return `
+                      <div onclick="selectTrainee('${t.uid}')" class="glass-card-interactive rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5 border ${isSel ? 'border-pink-400 bg-gradient-to-r from-violet-500/25 to-rose-500/20' : 'border-white/10'}">
+                        ${renderAvatarImg(t, 'w-16 h-16 rounded-2xl', true)}
+                        <div class="flex-1 min-w-0">
+                          <div class="flex items-start justify-between gap-2">
+                            <div class="min-w-0">
+                              <div class="font-black text-sm text-white leading-tight">${nameLink(t)}</div>
+                              <div class="text-[10px] text-pink-300 font-bold tracking-wide leading-tight mt-0.5 break-words">${t.stageName}</div>
+                            </div>
+                            <span class="shrink-0 whitespace-nowrap px-1.5 py-0.5 rounded text-[10px] font-black ${t.grade === 'S' || t.grade === 'A' ? 'bg-amber-400 text-black' : 'bg-white/15 text-white'}">${t.grade}级</span>
+                          </div>
+                          <div class="text-[11px] text-slate-400 mt-1 whitespace-nowrap">${t.potential}潜力 · 综合实力 <strong class="text-cyan-300">${avg}</strong></div>
+                          <div class="flex items-center justify-between gap-2 mt-1.5 text-[10px]">
+                            <span class="text-violet-300 truncate min-w-0">${t.trait}</span>
+                            <span class="shrink-0 whitespace-nowrap ${t.stamina < 30 ? 'text-rose-400' : 'text-emerald-300'} font-bold">体力 ${t.stamina}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+
+              <!-- Right Column (5 cols on Desktop): Detailed Trainee Inspector & 1v1 Training -->
+              ${selected ? `
+                <div class="lg:col-span-5 glass-panel rounded-3xl p-4 sm:p-5 space-y-4 sticky top-4">
+                  <div class="flex items-start gap-4">
+                    ${renderAvatarImg(selected, 'w-24 h-24 rounded-3xl', true)}
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between">
+                        <span class="px-2 py-0.5 rounded-md text-[10px] font-black ${selected.potential === 'UR' ? 'bg-gradient-to-r from-amber-300 to-rose-500 text-black' : 'bg-pink-500/30 text-pink-200'}">
+                          ${selected.potential} 潜力 · 考核 ${selected.grade} 级
+                        </span>
+                        <button onclick="openProfileModal('${selected.uid}')" class="text-xs text-slate-400 hover:text-white">
+                          <i class="fa-solid fa-id-card"></i> 完整档案
+                        </button>
+                      </div>
+                      <h3 class="text-lg font-black text-white mt-1">${nameLink(selected)} <span class="text-xs text-pink-300">${selected.stageName}</span></h3>
+                      <p class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-slate-300 mt-0.5">${formatNation(selected.nation)}<span class="text-slate-600">·</span><span class="whitespace-nowrap">${selected.age}岁</span><span class="text-slate-600">·</span><span class="whitespace-nowrap">擅长 ${conceptShort(CONCEPTS[selected.bestConcept])}</span></p>
+                      <div class="mt-1.5 inline-block text-[10px] px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-200 border border-violet-400/30 font-semibold">
+                        ${selected.trait}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Stamina & Stress -->
+                  <div class="grid grid-cols-2 gap-3 pt-2 border-t border-white/10 text-xs">
+                    <div>
+                      <div class="flex justify-between mb-1"><span class="text-slate-400">体力状态</span><span class="font-bold text-emerald-300">${selected.stamina}/100</span></div>
+                      <div class="h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 stat-bar-fill" style="width:${selected.stamina}%"></div></div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between mb-1"><span class="text-slate-400">训练压力</span><span class="font-bold text-rose-300">${selected.stress}/100</span></div>
+                      <div class="h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-gradient-to-r from-amber-400 to-rose-500 stat-bar-fill" style="width:${selected.stress}%"></div></div>
+                    </div>
+                  </div>
+
+                  <!-- 5 Core Idol Attributes -->
+                  <div class="space-y-2">
+                    ${[
+                      { key: 'vocal', label: '声乐 Vocal', val: selected.vocal, color: 'from-violet-400 to-fuchsia-500' },
+                      { key: 'dance', label: '舞蹈 Dance', val: selected.dance, color: 'from-rose-400 to-pink-500' },
+                      { key: 'rap', label: '说唱 Rap', val: selected.rap, color: 'from-cyan-400 to-blue-500' },
+                      { key: 'visual', label: '视觉 Visual', val: selected.visual, color: 'from-amber-300 to-rose-400' },
+                      { key: 'charisma', label: '舞台魅力 Charisma', val: selected.charisma, color: 'from-emerald-400 to-teal-500' }
+                    ].map(st => `
+                      <div class="flex items-center gap-2 text-xs">
+                        <span class="w-28 text-slate-300 shrink-0">${st.label}</span>
+                        <div class="flex-1 h-2 rounded-full bg-black/40 overflow-hidden">
+                          <div class="h-full bg-gradient-to-r ${st.color} stat-bar-fill" style="width:${st.val}%"></div>
+                        </div>
+                        <span class="w-8 text-right font-black text-white">${st.val}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+
+                  <!-- 1v1 Specialized Training Buttons (No AP Cost, Uses Funds & Stamina) -->
+                  <div class="pt-2 border-t border-white/10">
+                    <div class="text-[11px] font-bold text-slate-300 mb-2 flex items-center justify-between">
+                      <span>🎯 1v1 导师专项私教 (不耗团体AP · 每次 ¥6万)</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <button onclick="trainIndividual('${selected.uid}', 'vocal')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-left flex justify-between items-center">
+                        <span>🎤 声乐高音课</span><span class="text-violet-300">+4~7</span>
+                      </button>
+                      <button onclick="trainIndividual('${selected.uid}', 'dance')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-left flex justify-between items-center">
+                        <span>⚡ 刀群舞特训</span><span class="text-rose-300">+4~7</span>
+                      </button>
+                      <button onclick="trainIndividual('${selected.uid}', 'rap')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-left flex justify-between items-center">
+                        <span>🔥 律动说唱课</span><span class="text-cyan-300">+4~7</span>
+                      </button>
+                      <button onclick="trainIndividual('${selected.uid}', 'visual')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-left flex justify-between items-center">
+                        <span>💎 骨相镜头感</span><span class="text-amber-300">+4~7</span>
+                      </button>
+                      <button onclick="trainIndividual('${selected.uid}', 'rest')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-emerald-300 text-left flex justify-between items-center">
+                        <span>🌿 恢复护理 (¥4万)</span><span>体力+45</span>
+                      </button>
+                      <button onclick="releaseTrainee('${selected.uid}')" class="glass-card-interactive py-2 px-3 rounded-xl text-xs font-bold text-slate-400 hover:text-rose-400 text-left flex justify-between items-center">
+                        <span>👋 协商解约</span><span>释放名额</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    function setTraineeFilter(f) {
+      playSound('click');
+      state.traineeFilter = f;
+      renderCurrentTab();
+    }
+
+    function selectTrainee(uid) {
+      playSound('click');
+      state.selectedTraineeUid = uid;
+      renderCurrentTab();
+    }
+
+    function trainIndividual(uid, type) {
+      const t = getPersonByUid(uid);
+      if (!t) return;
+
+      if (type === 'rest') {
+        if (state.funds < 4) return showToast('💰 资金不足 ¥4万！', 'warn');
+        state.funds -= 4;
+        t.stamina = Math.min(100, t.stamina + 45);
+        t.stress = Math.max(0, t.stress - 35);
+        playSound('success');
+        showToast(`🌿 ${t.name} 完成体能康复与心理疏导，体力+45！`, 'info');
+      } else {
+        if (state.funds < 6) {
+          playSound('warn');
+          return showToast('💰 私教经费不足 ¥6万！', 'warn');
+        }
+        if (t.stamina < 15) {
+          playSound('warn');
+          return showToast(`⚠️ ${t.name} 体力不足(${t.stamina}%)，请先安排恢复护理！`, 'warn');
+        }
+        state.funds -= 6;
+        t.stamina -= 15;
+        t.stress = Math.min(100, t.stress + 8);
+        const cap = t.potential === 'UR' ? 100 : t.potential === 'SSR' ? 96 : 90;
+        const gain = randInt(4, 7);
+        t[type] = Math.min(cap, t[type] + gain);
+        t.charisma = Math.min(cap, t.charisma + randInt(1, 3));
+        t.grade = calcTraineeGrade(t);
+        playSound('success');
+        showToast(`✨ ${t.name} 完成私教特训！属性 +${gain}，当前评级 ${t.grade}级`, 'success');
+      }
+
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+    }
+
+    function runGroupTraineeClass() {
+      const trainees = getActiveTrainees();
+      if (trainees.length === 0) return showToast('当前没有在训练习生！', 'warn');
+      if (state.ap < 1) return showToast('⚡ 行动力(AP)不足！', 'warn');
+      if (state.funds < 12) return showToast('💰 资金不足 ¥12万！', 'warn');
+
+      state.ap -= 1;
+      state.funds -= 12;
+      trainees.forEach(t => {
+        const cap = t.potential === 'UR' ? 100 : 95;
+        t.vocal = Math.min(cap, t.vocal + randInt(2, 4));
+        t.dance = Math.min(cap, t.dance + randInt(2, 4));
+        t.rap = Math.min(cap, t.rap + randInt(1, 3));
+        t.charisma = Math.min(cap, t.charisma + randInt(2, 4));
+        t.stamina = Math.max(0, t.stamina - 14);
+        t.grade = calcTraineeGrade(t);
+      });
+      playSound('success');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`🎵 全营 ${trainees.length} 名练习生完成集体合练，全员五维属性提升！`, 'success');
+    }
+
+    function runMonthlyEvaluation() {
+      const trainees = getActiveTrainees();
+      if (trainees.length === 0) return showToast('当前没有在训练习生！', 'warn');
+      if (state.ap < 1) return showToast('⚡ 举办月末考核需消耗 1 点行动力(AP)！', 'warn');
+
+      state.ap -= 1;
+      let aCount = 0;
+      trainees.forEach(t => {
+        t.vocal = Math.min(100, t.vocal + randInt(2, 5));
+        t.dance = Math.min(100, t.dance + randInt(2, 5));
+        t.charisma = Math.min(100, t.charisma + randInt(3, 6));
+        t.grade = calcTraineeGrade(t);
+        if (t.grade === 'S' || t.grade === 'A') aCount++;
+      });
+
+      const topTrainee = [...trainees].sort((a, b) => (b.vocal + b.dance + b.visual + b.charisma) - (a.vocal + a.dance + a.visual + a.charisma))[0];
+      state.reputation += 15;
+      addTrendPost(`📹 STARLIGHT 娱乐公开月末考核练习室视频，${topTrainee.name} 凭满分表现冲上热搜！`, '热议 410万', '热议');
+
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`🏆 月末考核圆满结束！共 ${aCount} 人斩获 A/S 等级，${topTrainee.name} 拿下考核第一名！`, 'gold');
+    }
+
+    function releaseTrainee(uid) {
+      const idx = state.trainees.findIndex(t => t.uid === uid && t.status === 'trainee');
+      if (idx === -1) return;
+      const name = state.trainees[idx].name;
+      state.trainees.splice(idx, 1);
+      state.debutDraft.selectedUids = state.debutDraft.selectedUids.filter(id => id !== uid);
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`👋 已与练习生 ${name} 友好协商解约`, 'info');
+    }
+
+    /********************************************************************
+     * 8. TAB 3: 成团筹备室 (DEBUT PREPARATION STUDIO: 3~7人自由组团)
+     ********************************************************************/
+    function calculateDebutSynergy() {
+      const d = state.debutDraft;
+      const members = d.selectedUids.map(uid => getPersonByUid(uid)).filter(Boolean);
+      if (members.length === 0) return { synergy: 0, avgSkill: 0, estFans: 0, debutCost: 80 };
+
+      const conc = CONCEPTS[d.concept];
+      let weightedSum = 0;
+      members.forEach(m => {
+        const score =
+          m.vocal * conc.weights.vocal +
+          m.dance * conc.weights.dance +
+          m.rap * conc.weights.rap +
+          m.visual * conc.weights.visual +
+          m.charisma * conc.weights.charisma;
+        const role = d.roles[m.uid];
+        const roleBonus = role === 'center' ? 1.25 : 1.08;
+        const matchBonus = m.bestConcept === d.concept ? 6 : 0;
+        weightedSum += (score + matchBonus) * roleBonus;
+      });
+
+      const avgSkill = Math.min(100, Math.round(weightedSum / members.length));
+      // Check if key roles (center, vocal, dancer) are covered
+      const assignedRoles = Object.values(d.roles);
+      const roleCoverageBonus = (assignedRoles.includes('center') ? 5 : 0) + (assignedRoles.includes('vocal') ? 4 : 0) + (assignedRoles.includes('dancer') ? 4 : 0);
+      const synergy = Math.min(100, Math.round(avgSkill * 0.88 + roleCoverageBonus));
+      const estFans = Math.round((15000 + synergy * 380 + state.reputation * 65) * (members.length / 4));
+      const debutCost = 60 + members.length * 10;
+
+      return { synergy, avgSkill, estFans, debutCost, members };
+    }
+
+    function renderDebutTab() {
+      const activeTrainees = getActiveTrainees();
+      const d = state.debutDraft;
+      // Clean up invalid UIDs
+      d.selectedUids = d.selectedUids.filter(uid => activeTrainees.some(t => t.uid === uid));
+      const calc = calculateDebutSynergy();
+
+      return `
+        <div class="space-y-6">
+          <!-- Top Banner -->
+          <div class="glass-panel rounded-3xl p-5 flex flex-wrap items-center justify-between gap-4 border border-pink-500/35">
+            <div>
+              <span class="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[10px] font-black uppercase tracking-wider">
+                DEBUT STUDIO · 新女团出道企划室
+              </span>
+              <h2 class="text-lg sm:text-xl font-black text-white mt-1">从练习生库中挑选 3 ~ 7 人组建全新 K-POP 女团</h2>
+              <p class="text-xs text-slate-300 mt-0.5">自由定制团名、概念定位，并为每位成员分配 C位、主唱、主舞、门面等队内担当</p>
+            </div>
+            <button onclick="randomizeGroupNameDraft()" class="px-3.5 py-2 rounded-2xl glass-pill text-xs font-bold text-cyan-300 hover:text-white">
+              <i class="fa-solid fa-dice mr-1"></i>随机高定团名灵感
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Left 7 Cols: Step 1 (Pick 3~7 Trainees) & Step 2 (Assign Roles) -->
+            <div class="lg:col-span-7 space-y-5">
+              <!-- Candidate Pool Selection -->
+              <div class="glass-panel rounded-3xl p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-sm font-black text-white">
+                    1. 勾选进入出道组的练习生 (<span class="text-pink-400">${d.selectedUids.length}</span> / 3~7人)
+                  </h3>
+                  <span class="text-[11px] text-slate-400">建议挑选 A/S 级且不同特长的成员</span>
+                </div>
+
+                ${activeTrainees.length < 3 ? `
+                  <div class="glass-pill rounded-2xl p-6 text-center space-y-2">
+                    <p class="text-xs text-amber-300 font-bold">⚠️ 当前在训练习生不足 3 人（现 ${activeTrainees.length} 人），无法达到最低成团人数！</p>
+                    <button onclick="switchTab('scouting')" class="btn-luxury px-4 py-2 rounded-xl text-xs font-black text-white">前往星探选秀招募练习生</button>
+                  </div>
+                ` : `
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    ${activeTrainees.map(t => {
+                      const picked = d.selectedUids.includes(t.uid);
+                      return `
+                        <div onclick="toggleDebutMember('${t.uid}')" class="glass-card-interactive rounded-2xl p-3 cursor-pointer flex items-center gap-3 border ${picked ? 'border-pink-400 bg-pink-500/15' : 'border-white/10 opacity-80'}">
+                          ${renderAvatarImg(t, 'w-13 h-13 rounded-xl', false)}
+                          <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                              <span class="font-black text-xs text-white truncate">${nameLink(t)} (${t.stageName})</span>
+                              <span class="text-[10px] font-black px-1.5 py-0.2 rounded ${t.grade === 'S' || t.grade === 'A' ? 'bg-amber-400 text-black' : 'bg-white/15 text-white'}">${t.grade}级</span>
+                            </div>
+                            <div class="text-[10px] text-slate-300 mt-0.5">声${t.vocal} · 舞${t.dance} · 颜${t.visual}</div>
+                            <div class="text-[10px] text-cyan-300 truncate">${t.trait}</div>
+                          </div>
+                          <i class="fa-solid ${picked ? 'fa-circle-check text-pink-400 text-base' : 'fa-circle-plus text-slate-500 text-base'}"></i>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                `}
+              </div>
+
+              <!-- Role Assignment for Picked Members -->
+              ${d.selectedUids.length > 0 ? `
+                <div class="glass-panel rounded-3xl p-4 sm:p-5">
+                  <h3 class="text-sm font-black text-white mb-3">2. 分配出道组队内担当 (Position & Lineup)</h3>
+                  <div class="space-y-2.5">
+                    ${calc.members.map(m => {
+                      const currentRole = d.roles[m.uid] || 'vocal';
+                      return `
+                        <div class="glass-pill rounded-2xl p-3 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                          <div class="flex items-center gap-3 min-w-0">
+                            ${renderAvatarImg(m, 'w-11 h-11 rounded-xl', true)}
+                            <div class="min-w-0">
+                              <div class="font-black text-xs text-white">${nameLink(m)} <span class="text-pink-300">${m.stageName}</span></div>
+                              <div class="text-[10px] text-slate-400">最强项：声${m.vocal} / 舞${m.dance} / Rap${m.rap} / 颜${m.visual}</div>
+                            </div>
+                          </div>
+                          <select onchange="assignDebutRole('${m.uid}', this.value)" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-pink-200 focus:outline-none focus:border-pink-400">
+                            ${GROUP_POSITIONS.map(pos => `
+                              <option value="${pos.id}" ${currentRole === pos.id ? 'selected' : ''}>${pos.name}</option>
+                            `).join('')}
+                          </select>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Right 5 Cols: Step 3 (Group Identity, Concept & Launch Button) -->
+            <div class="lg:col-span-5 glass-panel rounded-3xl p-5 space-y-4 sticky top-4">
+              <h3 class="text-sm font-black text-white border-b border-white/10 pb-2.5">3. 设定女团企划与出道概念</h3>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="text-[11px] text-slate-400 block mb-1">官方女团名 (Group Name)</label>
+                  <input type="text" value="${d.groupName}" oninput="state.debutDraft.groupName=this.value;saveState();"
+                    class="w-full px-3 py-2 rounded-xl bg-black/45 border border-white/20 text-xs font-black text-white" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-400 block mb-1">官方粉丝名 (Fandom)</label>
+                  <input type="text" value="${d.fandomName}" oninput="state.debutDraft.fandomName=this.value;saveState();"
+                    class="w-full px-3 py-2 rounded-xl bg-black/45 border border-white/20 text-xs font-bold text-pink-300" />
+                </div>
+              </div>
+
+              <!-- Group Concept Selection -->
+              <div>
+                <label class="text-[11px] text-slate-400 block mb-1.5">团队主打世界观与概念</label>
+                <div class="space-y-1.5">
+                  ${Object.values(CONCEPTS).map(c => `
+                    <button onclick="state.debutDraft.concept='${c.id}';saveState();renderCurrentTab();"
+                      class="w-full p-2.5 rounded-2xl text-left border transition flex items-center justify-between ${d.concept === c.id ? 'bg-gradient-to-r from-violet-500/30 to-rose-500/25 border-pink-400' : 'glass-pill opacity-80'}">
+                      <div>
+                        <div class="text-xs font-black text-white">${c.name} <span class="text-[10px] font-normal text-pink-300 ml-1">${c.tag}</span></div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">${c.desc}</div>
+                      </div>
+                      <i class="fa-solid ${d.concept === c.id ? 'fa-circle-check text-pink-400' : 'fa-circle text-white/10'} ml-2"></i>
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Synergy Preview Box -->
+              <div class="glass-pill rounded-2xl p-3.5 space-y-2 border border-white/15">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">成团化学反应 (团魂协同度)</span>
+                  <span class="font-black text-cyan-300">${calc.synergy}%</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">预计出道 Showcase 吸粉</span>
+                  <span class="font-black text-pink-300">+${formatFans(calc.estFans)}</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">出道制作与宣发预算</span>
+                  <span class="font-black ${state.funds >= calc.debutCost ? 'text-emerald-300' : 'text-rose-400'}">¥${calc.debutCost}.0万</span>
+                </div>
+              </div>
+
+              <button onclick="confirmDebutGroup()" class="btn-luxury w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black text-white shadow-xl">
+                <i class="fa-solid fa-crown mr-1.5"></i>举办出道 Showcase 正式成团！
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleDebutMember(uid) {
+      playSound('click');
+      const d = state.debutDraft;
+      const idx = d.selectedUids.indexOf(uid);
+      if (idx >= 0) {
+        d.selectedUids.splice(idx, 1);
+        delete d.roles[uid];
+      } else {
+        if (d.selectedUids.length >= 7) {
+          return showToast('⚠️ 单支女团最多支持 7 名成员！', 'warn');
+        }
+        d.selectedUids.push(uid);
+        const defaultRoles = ['center', 'vocal', 'dancer', 'rapper', 'visual', 'maknae', 'leader'];
+        d.roles[uid] = defaultRoles[(d.selectedUids.length - 1) % defaultRoles.length];
+      }
+      saveState();
+      renderCurrentTab();
+    }
+
+    function assignDebutRole(uid, roleId) {
+      playSound('click');
+      state.debutDraft.roles[uid] = roleId;
+      saveState();
+      renderCurrentTab();
+    }
+
+    function randomizeGroupNameDraft() {
+      playSound('click');
+      const pick = GROUP_NAME_IDEAS[Math.floor(Math.random() * GROUP_NAME_IDEAS.length)];
+      state.debutDraft.groupName = pick.group;
+      state.debutDraft.fandomName = pick.fandom;
+      saveState();
+      renderCurrentTab();
+      showToast(`✨ 已生成高定女团企划名：${pick.group} (粉丝名: ${pick.fandom})`, 'info');
+    }
+
+    function confirmDebutGroup() {
+      const d = state.debutDraft;
+      if (d.selectedUids.length < 3 || d.selectedUids.length > 7) {
+        playSound('warn');
+        return showToast('⚠️ 请选择 3 ~ 7 名练习生组成出道阵容！', 'warn');
+      }
+      const calc = calculateDebutSynergy();
+      if (state.funds < calc.debutCost) {
+        playSound('warn');
+        return showToast(`💰 出道宣发预算不足 ¥${calc.debutCost}万！`, 'warn');
+      }
+
+      state.funds -= calc.debutCost;
+      const groupId = 'grp_' + Date.now();
+      const groupMembers = d.selectedUids.map(uid => {
+        const tr = state.trainees.find(t => t.uid === uid);
+        tr.status = 'debuted';
+        tr.groupId = groupId;
+        tr.position = d.roles[uid] || 'vocal';
+        return tr;
+      });
+
+      const newGroup = {
+        id: groupId,
+        name: d.groupName.trim() || 'LUMIÈRE',
+        fandomName: d.fandomName.trim() || 'AURORA',
+        concept: d.concept,
+        synergy: calc.synergy,
+        fans: calc.estFans,
+        reputation: 150 + Math.round(calc.synergy * 0.8),
+        trophies: 0,
+        pakCount: 0,
+        debutDate: `${state.year}年${state.month}月${state.day}日`,
+        members: groupMembers,
+        activeComeback: null
+      };
+
+      state.groups.unshift(newGroup);
+      state.activeGroupId = newGroup.id;
+      state.totalFans += calc.estFans;
+      state.reputation += 45;
+      state.debutDraft.selectedUids = [];
+      state.debutDraft.roles = {};
+
+      addTrendPost(`🎉 怪物新人降临！STARLIGHT 旗下 ${groupMembers.length} 人女团【${newGroup.name}】正式举行出道 Showcase，全网热议！`, '爆 890万', '爆');
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+
+      // Show Debut Modal & Navigate to Group Operations
+      const modal = document.getElementById('modalBox');
+      modal.innerHTML = `
+        <div class="text-center space-y-4 py-2">
+          <span class="px-3 py-1 rounded-full bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[10px] font-black uppercase tracking-widest">
+            DEBUT SHOWCASE SUCCESS
+          </span>
+          <h3 class="text-2xl font-black text-white">👑 恭喜【${newGroup.name}】正式成团出道！</h3>
+          <p class="text-xs text-pink-300 font-bold">官方粉丝名：${newGroup.fandomName} · 主打风格：${CONCEPTS[newGroup.concept].name}</p>
+
+          <div class="flex flex-wrap justify-center gap-3 my-3">
+            ${newGroup.members.map(m => {
+              const posObj = GROUP_POSITIONS.find(p => p.id === m.position) || GROUP_POSITIONS[0];
+              return `
+                <div class="glass-pill rounded-2xl p-2.5 flex flex-col items-center w-24">
+                  ${renderAvatarImg(m, 'w-14 h-14 rounded-2xl', false)}
+                  <span class="text-xs font-black text-white mt-1.5 truncate w-full">${m.name}</span>
+                  <span class="text-[9px] text-pink-300 truncate w-full">${posObj.name.split(' ')[1]}</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-left">
+            <div class="glass-pill rounded-2xl p-3">
+              <div class="text-[10px] text-slate-400">出道初始死忠粉</div>
+              <div class="text-base font-black text-pink-300">+${formatFans(calc.estFans)}</div>
+            </div>
+            <div class="glass-pill rounded-2xl p-3">
+              <div class="text-[10px] text-slate-400">团魂默契协同度</div>
+              <div class="text-base font-black text-cyan-300">${calc.synergy}%</div>
+            </div>
+          </div>
+
+          <button onclick="closeModal(); switchTab('groups');" class="btn-luxury w-full py-3 rounded-2xl text-xs font-black text-white">
+            前往女团运营与回归制作室
+          </button>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+    }
+
+    /********************************************************************
+     * 9. TAB 4: 女团运营与回归打歌 (ACTIVE GIRL GROUPS & COMEBACK STUDIO)
+     ********************************************************************/
+    function getActiveGroup() {
+      if (state.groups.length === 0) return null;
+      return state.groups.find(g => g.id === state.activeGroupId) || state.groups[0];
+    }
+
+    function renderGroupsTab() {
+      const g = getActiveGroup();
+      if (!g) {
+        return `
+          <div class="glass-panel rounded-3xl p-10 text-center space-y-4">
+            <div class="text-4xl">👑</div>
+            <h2 class="text-lg font-black text-white">旗下暂无已出道的女团</h2>
+            <p class="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+              请先在「星探选秀」招募练习生、在「练习生营」培养实力，然后前往「筹备成团」挑选 3~7 人正式组建您的第一支 K-POP 女团！
+            </p>
+            <button onclick="switchTab('debut')" class="btn-luxury px-6 py-3 rounded-2xl text-xs font-black text-white">
+              立即前往筹备成团室
+            </button>
+          </div>
+        `;
+      }
+
+      const d = state.comebackDraft;
+      if (!d.centerUid || !g.members.some(m => m.uid === d.centerUid)) d.centerUid = g.members[0].uid;
+      if (!d.killingUid || !g.members.some(m => m.uid === d.killingUid)) d.killingUid = g.members[Math.min(1, g.members.length - 1)].uid;
+
+      const cb = g.activeComeback;
+      const fmt = ALBUM_FORMATS[d.format];
+      const prod = PRODUCERS[d.producer];
+      const mv = MV_BUDGETS[d.mvBudget];
+      const totalComebackCost = fmt.cost + prod.cost + mv.cost;
+      if (!d.stageOutfits) d.stageOutfits = {};
+      const ownedStage = OUTFITS.filter(o => o.type === 'stage' && state.wardrobe.includes(o.id));
+      const outfitBonus = calcOutfitBonus(g, d);
+
+      return `
+        <div class="space-y-6">
+          <!-- Group Switcher & Header Card -->
+          <div class="glass-panel rounded-3xl p-4 sm:p-5 ${cb ? 'stage-active-glow border-rose-500/45' : ''}">
+            ${state.groups.length > 1 ? `
+              <div class="flex items-center gap-2 mb-3 pb-3 border-b border-white/10 overflow-x-auto">
+                <span class="text-[11px] text-slate-400 shrink-0">切换旗下女团：</span>
+                ${state.groups.map(grp => `
+                  <button onclick="state.activeGroupId='${grp.id}';saveState();renderCurrentTab();"
+                    class="px-3 py-1 rounded-xl text-xs font-black transition ${grp.id === g.id ? 'bg-pink-500 text-white' : 'glass-pill text-slate-300'}">
+                    ${grp.name} (${grp.members.length}人)
+                  </button>
+                `).join('')}
+              </div>
+            ` : ''}
+
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 class="text-xl font-black text-white">${g.name}</h2>
+                  <span class="px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-xs font-bold border border-pink-400/30">
+                    <i class="fa-solid fa-heart text-[10px] mr-1"></i>${g.fandomName} (${formatFans(g.fans)})
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full glass-pill text-cyan-300 text-xs font-bold">
+                    团魂 ${g.synergy}%
+                  </span>
+                </div>
+                <p class="text-xs text-slate-400 mt-0.5">出道时间：${g.debutDate} · 累计打歌一位：🏆 ${g.trophies} 座</p>
+              </div>
+
+              ${cb ? `
+                <button onclick="runGroupMusicShow()" class="btn-luxury px-5 py-2.5 rounded-2xl text-xs font-black text-white shadow-xl">
+                  <i class="fa-solid fa-tv mr-1.5"></i>出演音乐节目打歌舞台 (-1 AP)
+                </button>
+              ` : ''}
+            </div>
+
+            <!-- Active Group Members Lineup (点击成员查看完整档案) -->
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2.5">
+              ${g.members.map(m => {
+                const posObj = GROUP_POSITIONS.find(p => p.id === m.position) || GROUP_POSITIONS[0];
+                return `
+                  <div onclick="openProfileModal('${m.uid}')" class="glass-card-interactive rounded-2xl p-2.5 flex flex-col items-center text-center cursor-pointer">
+                    ${renderAvatarImg(m, 'w-14 h-14 sm:w-16 sm:h-16 rounded-2xl', true)}
+                    <div class="font-black text-xs text-white mt-1.5 truncate w-full">${m.name}</div>
+                    <div class="text-[10px] text-pink-300 font-semibold truncate w-full">${posObj.name.split(' ')[1]}</div>
+                    <div class="text-[9px] text-emerald-300 mt-0.5">体力 ${m.stamina}%</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <!-- If Active Comeback Promotion is Running -->
+            ${cb ? `
+              <div class="mt-4 pt-3.5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+                <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
+                  <div class="text-[10px] text-slate-400">正在打歌专辑 (剩${cb.weeksLeft}周)</div>
+                  <div class="text-xs sm:text-sm font-black text-white truncate">《${cb.albumTitle}》</div>
+                </div>
+                <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
+                  <div class="text-[10px] text-slate-400">Melon 音源实时榜</div>
+                  <div class="text-sm font-black text-cyan-300">#${cb.chartRank} ${cb.isPAK ? '🏆PAK' : ''}</div>
+                </div>
+                <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
+                  <div class="text-[10px] text-slate-400">Hanteo 累计销量</div>
+                  <div class="text-sm font-black text-pink-300">${cb.sales.toFixed(1)} 万张</div>
+                </div>
+                <div class="bg-black/40 rounded-2xl p-2.5 border border-white/10">
+                  <div class="text-[10px] text-slate-400">本次回归一位奖杯</div>
+                  <div class="text-sm font-black text-amber-400">🏆 ${cb.trophies} 座</div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Two-Column Workspace: Left Group Schedules + Right Comeback Production Studio -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- Left 6 Cols: Group Schedules & Commercial Endorsements -->
+            <div class="lg:col-span-6 glass-panel rounded-3xl p-5 space-y-3.5">
+              <h3 class="text-sm font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-calendar-check text-violet-400"></i>
+                ${g.name} 团体通告与商业行程 (消耗 1 AP)
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button onclick="runGroupSchedule('practice')" class="glass-card-interactive rounded-2xl p-3.5 text-left">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-white">🎵 刀群舞合练</span>
+                    <span class="text-[10px] text-amber-300 font-bold">¥8万</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">全员唱跳能力提升，团魂默契+4%</p>
+                </button>
+
+                <button onclick="runGroupSchedule('variety')" class="glass-card-interactive rounded-2xl p-3.5 text-left">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-white">🎬 王牌团综录制</span>
+                    <span class="text-[10px] text-emerald-300 font-bold">+¥22万</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">神仙综艺梗出圈，吸粉 +8000~1.8万</p>
+                </button>
+
+                <button onclick="runGroupSchedule('cf')" class="glass-card-interactive rounded-2xl p-3.5 text-left">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-white">💎 顶奢全球代言 CF</span>
+                    <span class="text-[10px] text-emerald-300 font-bold">高额代言费</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">按声望与门面赚取 ¥45万~280万+</p>
+                </button>
+
+                <button onclick="runGroupSchedule('fansign')" class="glass-card-interactive rounded-2xl p-3.5 text-left">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-white">💝 线下特典签售会</span>
+                    <span class="text-[10px] text-amber-300 font-bold">¥6万</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">死忠粉暴涨，打歌期专辑销量额外+20%</p>
+                </button>
+
+                <button onclick="runGroupSchedule('vacation')" class="glass-card-interactive rounded-2xl p-3.5 text-left">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-white">🏖️ 济州岛治愈团建</span>
+                    <span class="text-[10px] text-amber-300 font-bold">¥10万</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">全员体力恢复+55，压力清零，团魂+6%</p>
+                </button>
+
+                <button onclick="runGroupSchedule('tour')" class="glass-card-interactive rounded-2xl p-3.5 text-left border-amber-400/30">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-black text-amber-300">🏟️ 全球万人巡演</span>
+                    <span class="text-[10px] text-emerald-300 font-bold">票房分成</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">需 5.0万粉丝，单场净赚 ¥160万+</p>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right 6 Cols: Comeback Album Production Studio -->
+            <div class="lg:col-span-6 glass-panel rounded-3xl p-5 space-y-4">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+                <div>
+                  <h3 class="text-sm font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-compact-disc text-pink-400 animate-spin" style="animation-duration:8s;"></i>
+                    《${g.name}》回归专辑制作企划室
+                  </h3>
+                  <p class="text-[11px] text-slate-400">定制概念主打曲，开启 3 周打歌宣传期冲击 Melon PAK</p>
+                </div>
+                <button onclick="randomizeComebackTitles()" class="px-2.5 py-1 rounded-xl glass-pill text-[11px] text-cyan-300">
+                  <i class="fa-solid fa-dice mr-1"></i>随机曲名
+                </button>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-[10px] text-slate-400 block mb-1">专辑名称</label>
+                  <input type="text" value="${d.albumTitle}" oninput="state.comebackDraft.albumTitle=this.value;saveState();"
+                    class="w-full px-3 py-1.5 rounded-xl bg-black/45 border border-white/20 text-xs font-black text-white" />
+                </div>
+                <div>
+                  <label class="text-[10px] text-slate-400 block mb-1">主打歌名称</label>
+                  <input type="text" value="${d.songTitle}" oninput="state.comebackDraft.songTitle=this.value;saveState();"
+                    class="w-full px-3 py-1.5 rounded-xl bg-black/45 border border-white/20 text-xs font-bold text-pink-300" />
+                </div>
+              </div>
+
+              <!-- Format & Concept -->
+              <div class="grid grid-cols-3 gap-2">
+                ${Object.values(ALBUM_FORMATS).map(f => `
+                  <button onclick="state.comebackDraft.format='${f.id}';saveState();renderCurrentTab();"
+                    class="p-2 rounded-xl text-left border text-xs transition ${d.format === f.id ? 'bg-violet-500/30 border-violet-400 text-white' : 'glass-pill text-slate-400'}">
+                    <div class="font-bold text-white">${f.name.split(' ')[0]}</div>
+                    <div class="text-[10px] text-amber-300">¥${f.cost}万 · ${f.salesMult}x</div>
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-[10px] text-slate-400 block mb-1">制作人档次</label>
+                  <select onchange="state.comebackDraft.producer=this.value;saveState();renderCurrentTab();" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-white">
+                    ${Object.values(PRODUCERS).map(p => `<option value="${p.id}" ${d.producer === p.id ? 'selected' : ''}>${p.name} (¥${p.cost}万)</option>`).join('')}
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[10px] text-slate-400 block mb-1">MV 视觉制作</label>
+                  <select onchange="state.comebackDraft.mvBudget=this.value;saveState();renderCurrentTab();" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-white">
+                    ${Object.values(MV_BUDGETS).map(m => `<option value="${m.id}" ${d.mvBudget === m.id ? 'selected' : ''}>${m.name} (¥${m.cost}万)</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Center & Killing Part Assignment -->
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-[10px] text-amber-300 font-bold block mb-1">👑 本次主打 C位</label>
+                  <select onchange="state.comebackDraft.centerUid=this.value;saveState();" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-amber-200">
+                    ${g.members.map(m => `<option value="${m.uid}" ${d.centerUid === m.uid ? 'selected' : ''}>${m.name} (${m.stageName})</option>`).join('')}
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[10px] text-pink-300 font-bold block mb-1">⚡ Killing Part 担当</label>
+                  <select onchange="state.comebackDraft.killingUid=this.value;saveState();" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-pink-200">
+                    ${g.members.map(m => `<option value="${m.uid}" ${d.killingUid === m.uid ? 'selected' : ''}>${m.name} (${m.stageName})</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+
+              <!-- 打歌服装选择 -->
+              <div class="space-y-2 pt-2 border-t border-white/10">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <label class="text-[11px] font-bold text-slate-200">🎽 打歌服装</label>
+                  <div class="flex items-center gap-2">
+                    ${ownedStage.length > 0 ? `
+                      <select onchange="setAllStageOutfits(this.value);this.value=''" class="px-2 py-1 rounded-lg bg-slate-900 border border-white/20 text-[10px] font-bold text-cyan-200">
+                        <option value="">全员统一穿…</option>
+                        ${ownedStage.map(o => `<option value="${o.id}">${o.name}</option>`).join('')}
+                      </select>
+                    ` : ''}
+                    <button onclick="openProfileModal('${d.centerUid}', 'wardrobe')" class="px-2.5 py-1 rounded-lg glass-pill text-[10px] font-bold text-pink-300 whitespace-nowrap">
+                      <i class="fa-solid fa-shirt mr-1"></i>去衣橱购买
+                    </button>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  ${g.members.map(m => {
+                    const cur = d.stageOutfits[m.uid] || '';
+                    const options = ownedStage.filter(o => outfitAvailableFor(o, m));
+                    const validCur = options.some(o => o.id === cur) ? cur : '';
+                    return `
+                      <div class="glass-pill rounded-xl p-2 flex items-center gap-2">
+                        ${renderAvatarImg(m, 'w-12 h-12 rounded-xl', true, validCur || null)}
+                        <div class="min-w-0 flex-1">
+                          <div class="text-[11px] font-black text-white truncate">${m.stageName}</div>
+                          <select onchange="setStageOutfit('${m.uid}', this.value)" class="w-full mt-0.5 px-1.5 py-1 rounded-lg bg-slate-900 border border-white/20 text-[10px] font-bold text-white">
+                            <option value="">日常装（无加成）</option>
+                            ${options.map(o => `<option value="${o.id}" ${validCur === o.id ? 'selected' : ''}>${o.name}${o.concept === g.concept ? ' ★' : ''} (+${o.stageBonus + (o.concept === g.concept ? 4 : 0)})</option>`).join('')}
+                          </select>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+                <div class="flex flex-wrap items-center justify-between gap-1 text-[10px]">
+                  <span class="text-slate-400">★ = 与团队概念「${conceptShort(CONCEPTS[g.concept])}」一致，额外 +4；全员都穿才能拿满</span>
+                  <span class="font-black ${outfitBonus > 0 ? 'text-emerald-300' : 'text-slate-500'}">专辑质量 +${outfitBonus}</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-white/10 flex items-center justify-between">
+                <div>
+                  <div class="text-[11px] text-slate-400">回归总预算</div>
+                  <div class="text-sm font-black ${state.funds >= totalComebackCost ? 'text-emerald-300' : 'text-rose-400'}">¥${totalComebackCost}.0 万</div>
+                </div>
+                <button onclick="launchGroupComeback()" class="btn-luxury px-5 py-2.5 rounded-2xl text-xs font-black text-white">
+                  <i class="fa-solid fa-rocket mr-1"></i>发行专辑开启回归
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function randomizeComebackTitles() {
+      playSound('click');
+      const pick = ALBUM_TITLE_IDEAS[Math.floor(Math.random() * ALBUM_TITLE_IDEAS.length)];
+      state.comebackDraft.albumTitle = pick.album;
+      state.comebackDraft.songTitle = pick.song;
+      saveState();
+      renderCurrentTab();
+    }
+
+    function runGroupSchedule(type) {
+      const g = getActiveGroup();
+      if (!g) return;
+      if (state.ap < 1) {
+        playSound('warn');
+        return showToast('⚡ 本周行动力(AP)已用尽，请点击右上角「推进下一周」！', 'warn');
+      }
+
+      if (type !== 'vacation' && g.members.some(m => m.stamina < 15)) {
+        playSound('warn');
+        return showToast('⚠️ 队内有成员体力濒临透支，请先安排「济州岛治愈团建」休整！', 'warn');
+      }
+
+      if (type === 'practice') {
+        if (state.funds < 8) return showToast('💰 资金不足 ¥8万！', 'warn');
+        state.ap -= 1;
+        state.funds -= 8;
+        g.synergy = Math.min(100, g.synergy + 4);
+        g.members.forEach(m => {
+          m.vocal = Math.min(100, m.vocal + 2);
+          m.dance = Math.min(100, m.dance + 3);
+          m.stamina = Math.max(0, m.stamina - 14);
+        });
+        playSound('success');
+        showToast(`🎵 ${g.name} 完成高强度刀群舞合练，团魂默契升至 ${g.synergy}%！`, 'success');
+      } else if (type === 'variety') {
+        state.ap -= 1;
+        const pay = 22 + Math.round(state.reputation * 0.06);
+        const newFans = randInt(8000, 18000);
+        state.funds += pay;
+        g.fans += newFans;
+        state.totalFans += newFans;
+        state.reputation += 10;
+        g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 12));
+        playSound('success');
+        showToast(`🎬 团综神级名场面出圈！通告费 +¥${pay}万，吸粉 +${formatFans(newFans)}！`, 'success');
+      } else if (type === 'cf') {
+        state.ap -= 1;
+        const avgVis = g.members.reduce((a, m) => a + m.visual, 0) / g.members.length;
+        const pay = Math.round((42 + state.reputation * 0.38 + (avgVis - 80) * 2) * 10) / 10;
+        state.funds += pay;
+        state.reputation += 16;
+        g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 10));
+        playSound('fanfare');
+        showToast(`💎 ${g.name} 拍摄法奢高定画报，入账代言费 +¥${pay.toFixed(1)}万！`, 'gold');
+      } else if (type === 'fansign') {
+        if (state.funds < 6) return showToast('💰 资金不足 ¥6万！', 'warn');
+        state.ap -= 1;
+        state.funds -= 6;
+        const newFans = 12000 + state.reputation * 30;
+        g.fans += newFans;
+        state.totalFans += newFans;
+        if (g.activeComeback) {
+          const boost = Math.round(g.activeComeback.sales * 0.2 * 10) / 10;
+          g.activeComeback.sales += boost;
+          const rev = Math.round(boost * 4.5 * 10) / 10;
+          state.funds += rev;
+          playSound('fanfare');
+          showToast(`💝 签售会特典小卡疯抢！专辑销量 +${boost}万张，分成 +¥${rev}万！`, 'gold');
+        } else {
+          playSound('success');
+          showToast(`💝 线下签售会神级饭撒出圈！死忠粉 +${formatFans(newFans)}`, 'success');
+        }
+      } else if (type === 'vacation') {
+        if (state.funds < 10) return showToast('💰 资金不足 ¥10万！', 'warn');
+        state.ap -= 1;
+        state.funds -= 10;
+        g.synergy = Math.min(100, g.synergy + 6);
+        g.members.forEach(m => {
+          m.stamina = Math.min(100, m.stamina + 55);
+          m.stress = 0;
+        });
+        playSound('success');
+        showToast(`🏖️ ${g.name} 济州岛度假归来！全员体力充沛，团魂+6%`, 'info');
+      } else if (type === 'tour') {
+        if (g.fans < 50000) {
+          playSound('warn');
+          return showToast('🔒 女团死忠粉达到 5.0万 即可开启万人巡回演唱会！', 'warn');
+        }
+        state.ap -= 1;
+        const rev = Math.round((155 + (g.fans / 10000) * 16 + state.reputation * 0.4) * 10) / 10;
+        state.funds += rev;
+        g.fans += 32000;
+        state.totalFans += 32000;
+        state.reputation += 35;
+        g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 22));
+        addTrendPost(`🏟️ 壮观应援海！${g.name} 世界巡回演唱会首尔站门票3秒售罄！`, '爆 920万', '爆');
+        playSound('fanfare');
+        showToast(`🎤 万人世巡大获成功！票房净赚 +¥${rev}万，吸粉 +3.2万！`, 'gold');
+      }
+
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+    }
+
+    function launchGroupComeback() {
+      const g = getActiveGroup();
+      if (!g) return;
+      const d = state.comebackDraft;
+      const fmt = ALBUM_FORMATS[d.format];
+      const prod = PRODUCERS[d.producer];
+      const mv = MV_BUDGETS[d.mvBudget];
+      const cost = fmt.cost + prod.cost + mv.cost;
+
+      if (state.funds < cost) {
+        playSound('warn');
+        return showToast(`💰 回归预算不足 ¥${cost}万！请先接拍高奢代言或巡演筹集资金。`, 'warn');
+      }
+
+      state.funds -= cost;
+      const avgSkill = g.members.reduce((a, m) => a + (m.vocal + m.dance + m.rap + m.visual + m.charisma) / 5, 0) / g.members.length;
+      const outfitBonus = calcOutfitBonus(g, d);
+      const quality = Math.round(avgSkill * 0.7 + prod.bonus + mv.bonus + g.synergy * 0.2 + outfitBonus);
+      let rank = Math.max(1, Math.round(50 - quality * 0.32));
+      if (quality >= 155) rank = 1;
+      const isPAK = rank === 1 && quality >= 170;
+
+      const firstWeekSales = Math.round((1.5 + (g.fans / 10000) * 1.6 + quality / 20) * fmt.salesMult * 10) / 10;
+      const revenue = Math.round(firstWeekSales * 4.5 * 10) / 10;
+
+      state.funds += revenue;
+      const fanGain = 18000 + quality * 120;
+      g.fans += fanGain;
+      state.totalFans += fanGain;
+      state.reputation += 30;
+      if (isPAK) state.pakCount += 1;
+
+      const centerMem = g.members.find(m => m.uid === d.centerUid) || g.members[0];
+      const cbObj = {
+        id: Date.now(),
+        groupName: g.name,
+        albumTitle: d.albumTitle || 'SUPERNOVA',
+        songTitle: d.songTitle || 'Title Track',
+        centerName: centerMem.name,
+        quality,
+        outfitBonus,
+        chartRank: rank,
+        isPAK,
+        sales: firstWeekSales,
+        trophies: 0,
+        weeksLeft: 3
+      };
+
+      g.activeComeback = cbObj;
+      state.discography.unshift(cbObj);
+
+      addTrendPost(`💿 空降 Melon #${rank}！${g.name} 回归新专《${cbObj.albumTitle}》初动突破 ${firstWeekSales}万张，首日结算 +¥${revenue}万！`, '爆 880万', '爆');
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`🚀 《${cbObj.albumTitle}》正式发行！首日音源 #${rank}，专辑分成入账 +¥${revenue}万！${outfitBonus > 0 ? ' 打歌服加成 +' + outfitBonus : ''}`, 'gold');
+    }
+
+    function runGroupMusicShow() {
+      const g = getActiveGroup();
+      if (!g || !g.activeComeback) return;
+      if (state.ap < 1) return showToast('⚡ 行动力(AP)不足！请进入下一周。', 'warn');
+
+      state.ap -= 1;
+      const cb = g.activeComeback;
+      cb.chartRank = Math.max(1, cb.chartRank - randInt(1, 3));
+      const won = cb.chartRank <= 3 || cb.quality >= 135 || Math.random() < 0.72;
+
+      g.members.forEach(m => m.stamina = Math.max(0, m.stamina - 14));
+
+      if (won) {
+        cb.trophies += 1;
+        g.trophies += 1;
+        state.totalTrophies += 1;
+        if (cb.chartRank === 1 && !cb.isPAK) {
+          cb.isPAK = true;
+          state.pakCount += 1;
+        }
+        g.fans += 16000;
+        state.totalFans += 16000;
+        state.reputation += 22;
+        playSound('fanfare');
+        showToast(`🏆 恭喜【${g.name}】在音乐节目斩获打歌一位奖杯！全开麦安可舞台封神！`, 'gold');
+      } else {
+        g.fans += 7000;
+        state.totalFans += 7000;
+        playSound('success');
+        showToast(`✨ 打歌舞台直拍百万播放出圈！音源排名升至 #${cb.chartRank}`, 'info');
+      }
+
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+    }
+
+    /********************************************************************
+     * 10. TAB 5: 热搜公关与荣誉图鉴 (TRENDS, HALL OF FAME & AVATAR GALLERY)
+     ********************************************************************/
+    function renderTrendsTab() {
+      return `
+        <div class="space-y-6">
+          <!-- Top Agency Honor Cabinet -->
+          <div class="glass-panel rounded-3xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-base font-black text-amber-300 flex items-center gap-2">
+                <i class="fa-solid fa-trophy"></i>
+                ${state.agencyName} 荣誉奖杯陈列室
+              </h2>
+              <button onclick="openAvatarManagerModal()" class="px-3.5 py-1.5 rounded-xl bg-pink-500/20 border border-pink-400/40 text-xs font-bold text-pink-200">
+                <i class="fa-solid fa-camera-retro mr-1"></i>立绘素材库
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div class="glass-pill rounded-2xl p-3.5">
+                <div class="text-2xl font-black text-amber-400">🏆 ${state.totalTrophies}</div>
+                <div class="text-xs text-slate-400 mt-1">音乐节目一位奖杯</div>
+              </div>
+              <div class="glass-pill rounded-2xl p-3.5">
+                <div class="text-2xl font-black text-cyan-300">💿 ${state.pakCount}</div>
+                <div class="text-xs text-slate-400 mt-1">Melon 全榜 PAK</div>
+              </div>
+              <div class="glass-pill rounded-2xl p-3.5">
+                <div class="text-2xl font-black text-rose-400">👑 ${state.daesangCount}</div>
+                <div class="text-xs text-slate-400 mt-1">年末 MAMA 年度大赏</div>
+              </div>
+              <div class="glass-pill rounded-2xl p-3.5">
+                <div class="text-2xl font-black text-pink-300">💖 ${formatFans(state.totalFans)}</div>
+                <div class="text-xs text-slate-400 mt-1">家族全球总死忠粉</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left 7 Cols: Netizen Hot Trends -->
+            <div class="lg:col-span-7 glass-panel rounded-3xl p-5 space-y-3">
+              <h3 class="text-sm font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-fire text-rose-500"></i>
+                韩网 Pann / Theqoo 实时热搜广场
+              </h3>
+              <div class="space-y-3">
+                ${state.trends.map((t, idx) => `
+                  <div class="glass-pill rounded-2xl p-3.5">
+                    <div class="flex items-start justify-between gap-2">
+                      <div class="text-xs sm:text-sm font-bold text-white">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-black mr-1.5 ${idx === 0 ? 'bg-rose-500 text-white' : 'bg-violet-500/30 text-violet-200'}">${t.tag}</span>
+                        ${t.title}
+                      </div>
+                      <span class="text-xs text-rose-300 font-bold shrink-0">🔥 ${t.heat}</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-white/10 space-y-1">
+                      ${(t.comments || []).map(c => `<div class="text-[11px] text-slate-300"><span class="text-cyan-400 font-bold mr-1">[热评]</span>${c}</div>`).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: Discography Archive -->
+            <div class="lg:col-span-5 glass-panel rounded-3xl p-5 space-y-3">
+              <h3 class="text-sm font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-record-vinyl text-violet-400"></i>
+                历代回归唱片销量榜 (${state.discography.length}张)
+              </h3>
+              ${state.discography.length === 0 ? `
+                <div class="text-xs text-slate-400 py-8 text-center">成团并发行专辑后，历代唱片成绩将收录于此</div>
+              ` : `
+                <div class="space-y-2.5">
+                  ${state.discography.map(alb => `
+                    <div class="glass-pill rounded-2xl p-3 flex items-center justify-between text-xs">
+                      <div>
+                        <div class="font-black text-white">${alb.groupName} 《${alb.albumTitle}》</div>
+                        <div class="text-[11px] text-pink-300 mt-0.5">主打曲：♪ ${alb.songTitle} · C位: ${alb.centerName}</div>
+                      </div>
+                      <div class="text-right">
+                        <div class="font-black text-cyan-300">最高 #${alb.chartRank} ${alb.isPAK ? '🏆PAK' : ''}</div>
+                        <div class="text-[11px] text-amber-300">${alb.sales.toFixed(1)}万张 · ${alb.trophies}一位</div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /********************************************************************
+     * 11. 艺人完整档案 / 衣橱 / 打歌服装
+     ********************************************************************/
+    let profileTab = 'info';
+
+    function fmtDateStr(ds) {
+      if (!ds) return '';
+      const [y, m, d] = ds.split('-').map(Number);
+      return `${y}年${m}月${d}日`;
+    }
+
+    function potentialCap(p) {
+      return p.potential === 'UR' ? 100 : p.potential === 'SSR' ? 96 : 90;
+    }
+
+    // 五个概念的适配度（按概念权重加权，擅长概念 +6）
+    function conceptFitList(p) {
+      return Object.values(CONCEPTS).map(c => {
+        const w = c.weights;
+        const score = p.vocal * w.vocal + p.dance * w.dance + p.rap * w.rap + p.visual * w.visual + p.charisma * w.charisma + (p.bestConcept === c.id ? 6 : 0);
+        return { c, score: Math.min(100, Math.round(score)) };
+      }).sort((a, b) => b.score - a.score);
+    }
+
+    function getPersonStatus(p) {
+      if (p.status === 'candidate') return { label: '待签约候选人', cls: 'bg-slate-500/25 text-slate-200 border-slate-400/30' };
+      if (p.status === 'debuted') {
+        const g = state.groups.find(x => x.id === p.groupId);
+        const pos = GROUP_POSITIONS.find(x => x.id === p.position);
+        return { label: `已出道${g ? ' · ' + g.name : ''}${pos ? ' · ' + pos.name.split(' ')[1] : ''}`, cls: 'bg-pink-500/25 text-pink-200 border-pink-400/30' };
+      }
+      return { label: '练习生 · 在训', cls: 'bg-cyan-500/20 text-cyan-200 border-cyan-400/30' };
+    }
+
+    // 打歌服装带来的专辑质量加成（全团平均，没穿的成员按 0 算）
+    function calcOutfitBonus(g, d) {
+      if (!g || !g.members.length) return 0;
+      const picks = d.stageOutfits || {};
+      let sum = 0;
+      g.members.forEach(m => {
+        const o = OUTFIT_BY_ID[picks[m.uid]];
+        if (!o || o.type !== 'stage' || !state.wardrobe.includes(o.id) || !outfitAvailableFor(o, m)) return;
+        sum += (o.stageBonus || 0) + (o.concept === g.concept ? 4 : 0);
+      });
+      return Math.round(sum / g.members.length);
+    }
+
+    function setStageOutfit(uid, outfitId) {
+      playSound('click');
+      state.comebackDraft.stageOutfits[uid] = outfitId;
+      saveState();
+      renderCurrentTab();
+    }
+
+    function setAllStageOutfits(outfitId) {
+      if (!outfitId) return;
+      const g = getActiveGroup();
+      const o = OUTFIT_BY_ID[outfitId];
+      if (!g || !o) return;
+      playSound('click');
+      g.members.forEach(m => {
+        if (outfitAvailableFor(o, m)) state.comebackDraft.stageOutfits[m.uid] = outfitId;
+      });
+      saveState();
+      renderCurrentTab();
+    }
+
+    function equipOutfit(uid, outfitId) {
+      const p = getPersonByUid(uid);
+      if (!p || !state.wardrobe.includes(outfitId)) return;
+      p.outfit = outfitId;
+      playSound('success');
+      saveState();
+      renderCurrentTab();
+      renderProfileModal(uid);
+      showToast(`👗 ${p.name} 换上了「${OUTFIT_BY_ID[outfitId].name}」`, 'info');
+    }
+
+    function buyOutfit(uid, outfitId) {
+      const o = OUTFIT_BY_ID[outfitId];
+      if (!o || state.wardrobe.includes(outfitId)) return;
+      if (state.funds < o.price) {
+        playSound('warn');
+        return showToast(`💰 资金不足，购买「${o.name}」需要 ¥${o.price}万`, 'warn');
+      }
+      state.funds -= o.price;
+      state.wardrobe.push(outfitId);
+      playSound('success');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      renderProfileModal(uid);
+      showToast(`🛍️ 已购入「${o.name}」，全员可穿！(-¥${o.price}万)`, 'gold');
+    }
+
+    function switchProfileTab(uid, tab) {
+      playSound('click');
+      profileTab = tab;
+      renderProfileModal(uid);
+    }
+
+    function openProfileModal(uid, tab = 'info') {
+      if (!getPersonByUid(uid)) return;
+      playSound('click');
+      profileTab = tab;
+      renderProfileModal(uid);
+      document.getElementById('modalOverlay').classList.remove('hidden');
+    }
+
+    function renderProfileModal(uid) {
+      const p = getPersonByUid(uid);
+      if (!p) return;
+      const st = getPersonStatus(p);
+      const curOutfit = OUTFIT_BY_ID[p.outfit || 'default'] || OUTFITS[0];
+      const tabBtn = (id, label) => `
+        <button onclick="switchProfileTab('${uid}', '${id}')"
+          class="px-3.5 py-1.5 rounded-xl text-xs font-black transition ${profileTab === id ? 'bg-pink-500 text-white' : 'glass-pill text-slate-300'}">${label}</button>`;
+
+      document.getElementById('modalBox').innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-white">🪪 艺人档案</h3>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-[240px_minmax(0,1fr)] gap-4 items-start">
+            <div class="space-y-2.5 max-w-[240px] w-full mx-auto sm:mx-0">
+              ${renderAvatarImg(p, 'w-full portrait-tall rounded-3xl', false)}
+              <div class="text-center text-[11px] text-slate-400">当前服装：<span class="text-pink-300 font-bold">${curOutfit.name}</span></div>
+            </div>
+
+            <div class="min-w-0 space-y-3">
+              <div>
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <div class="text-xl font-black text-white leading-tight">${p.name}</div>
+                    <div class="text-xs text-pink-300 font-bold tracking-wide mt-0.5 break-words">${p.stageName}</div>
+                  </div>
+                  <button onclick="openEditPersonModal('${uid}')" class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-lg glass-pill text-[11px] text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-pen-to-square mr-1"></i>改名
+                  </button>
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                  <span class="whitespace-nowrap px-2 py-0.5 rounded-md text-[10px] font-black ${p.potential === 'UR' ? 'bg-gradient-to-r from-amber-300 to-rose-500 text-black' : p.potential === 'SSR' ? 'bg-pink-500/30 text-pink-200 border border-pink-400/40' : 'bg-cyan-500/20 text-cyan-200'}">${p.potential} · ${p.grade || calcTraineeGrade(p)}级</span>
+                  <span class="whitespace-nowrap px-2 py-0.5 rounded-md text-[10px] font-bold border ${st.cls}">${st.label}</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-slate-300 mt-2">
+                  ${formatNation(p.nation)}<span class="text-slate-600">·</span><span class="whitespace-nowrap">${p.age}岁</span>
+                </div>
+                ${renderProfileSide(p)}
+              </div>
+
+              <div class="flex gap-2">
+                ${tabBtn('info', '📋 个人档案')}
+                ${tabBtn('wardrobe', '👗 衣橱')}
+              </div>
+
+              ${profileTab === 'wardrobe' ? renderProfileWardrobe(p) : renderProfileInfo(p)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 立绘下方的侧栏：体力/压力 + 履历（两个标签页都显示）
+    function renderProfileSide(p) {
+      const centerCount = state.discography.filter(cb => cb.centerName === p.name).length;
+      const grp = p.groupId ? state.groups.find(g => g.id === p.groupId) : null;
+      const joined = p.joinDate ? fmtDateStr(p.joinDate) : (p.status === 'candidate' ? '尚未签约' : '公司创立初期');
+      const bar = (label, val, txt, grad) => `
+        <div class="flex items-center gap-1.5 min-w-0">
+          <span class="text-slate-400 shrink-0">${label}</span>
+          <div class="h-1.5 flex-1 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-gradient-to-r ${grad}" style="width:${val}%"></div></div>
+          <b class="${txt} shrink-0 w-6 text-right">${val}</b>
+        </div>`;
+      const chip = (label, value) => `
+        <span class="whitespace-nowrap"><span class="text-slate-500">${label}</span> <b class="text-white">${value}</b></span>`;
+      return `
+        <div class="mt-2.5 glass-pill rounded-xl px-3 py-2 space-y-1.5 text-[11px]">
+          <div class="grid grid-cols-2 gap-x-4">
+            ${bar('体力', p.stamina, 'text-emerald-300', 'from-emerald-400 to-cyan-400')}
+            ${bar('压力', p.stress, 'text-rose-300', 'from-amber-400 to-rose-500')}
+          </div>
+          <div class="flex flex-wrap gap-x-3 gap-y-0.5 pt-1.5 border-t border-white/5">
+            ${chip('签约', joined)}
+            ${chip(p.status === 'candidate' ? '签约金' : '女团', p.status === 'candidate' ? '¥' + p.signFee + '万' : (grp ? grp.name : '尚未出道'))}
+            ${chip('出道', grp ? grp.debutDate : '—')}
+            ${chip('C位', centerCount + '张')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProfileInfo(p) {
+      const cap = potentialCap(p);
+      const stats = [
+        { label: '声乐', key: 'vocal', bar: 'from-violet-400 to-violet-500', txt: 'text-violet-300' },
+        { label: '舞蹈', key: 'dance', bar: 'from-rose-400 to-rose-500', txt: 'text-rose-300' },
+        { label: '说唱', key: 'rap', bar: 'from-cyan-400 to-cyan-500', txt: 'text-cyan-300' },
+        { label: '视觉', key: 'visual', bar: 'from-amber-300 to-amber-500', txt: 'text-amber-300' },
+        { label: '魅力', key: 'charisma', bar: 'from-emerald-400 to-emerald-500', txt: 'text-emerald-300' }
+      ];
+      const avg = Math.round(stats.reduce((a, x) => a + p[x.key], 0) / 5);
+      const best = [...stats].sort((a, b) => p[b.key] - p[a.key])[0];
+      const traitDesc = p.traitDesc || (SPECIAL_TRAITS.find(t => t.name === p.trait) || {}).desc || '';
+      const fits = conceptFitList(p).slice(0, 3);
+      const bestConcept = CONCEPTS[p.bestConcept];
+
+      return `
+        <div class="space-y-3.5">
+          <div>
+            <div class="inline-block max-w-full text-[11px] px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-200 border border-violet-400/30 font-semibold">${p.trait}</div>
+            ${traitDesc ? `<p class="text-[11px] text-slate-400 mt-1 leading-relaxed">${traitDesc}</p>` : ''}
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-black text-white">五维能力</span>
+              <span class="text-slate-400">综合 <b class="text-cyan-300">${avg}</b> · 最强 <b class="${best.txt}">${best.label}</b> · 上限 <b class="text-white">${cap}</b></span>
+            </div>
+            ${stats.map(x => `
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="w-8 shrink-0 text-slate-400">${x.label}</span>
+                <div class="relative flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div class="h-full rounded-full bg-gradient-to-r ${x.bar}" style="width:${p[x.key]}%"></div>
+                  <div class="absolute top-0 bottom-0 w-px bg-white/60" style="left:${cap}%"></div>
+                </div>
+                <span class="w-7 shrink-0 text-right font-black ${x.txt}">${p[x.key]}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="text-[11px] font-black text-white">概念适配度 <span class="font-normal text-slate-400">（擅长：${bestConcept ? conceptShort(bestConcept) : '—'}）</span></div>
+            ${fits.map(f => `
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="w-20 shrink-0 text-slate-300 truncate">${conceptShort(f.c)}</span>
+                <div class="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-violet-400 to-pink-400" style="width:${f.score}%"></div></div>
+                <span class="w-7 shrink-0 text-right font-bold text-pink-300">${f.score}</span>
+              </div>
+            `).join('')}
+          </div>
+
+        </div>
+      `;
+    }
+
+    function renderProfileWardrobe(p) {
+      const equipped = p.outfit || 'default';
+      const list = OUTFITS.filter(o => outfitAvailableFor(o, p));
+      return `
+        <div class="space-y-2.5">
+          <p class="text-[11px] text-slate-400 leading-relaxed">公司共用衣橱：买一次，全员都能穿。某人缺少这套服装的立绘时，会先用她的默认立绘代替。</p>
+          <div class="grid grid-cols-2 gap-2.5 max-h-[50dvh] overflow-y-auto custom-scroll pr-1">
+            ${list.map(o => {
+              const owned = state.wardrobe.includes(o.id);
+              const isOn = equipped === o.id;
+              const conc = o.concept ? conceptShort(CONCEPTS[o.concept]) : '';
+              return `
+                <div class="rounded-2xl p-2 border ${isOn ? 'border-pink-400 bg-pink-500/10' : 'border-white/10 bg-white/5'}">
+                  ${renderAvatarImg(p, 'w-full portrait-tall rounded-xl', false, o.id)}
+                  <div class="mt-1.5 flex items-start justify-between gap-1">
+                    <span class="text-[11px] font-black text-white leading-tight">${o.name}</span>
+                    <span class="shrink-0 whitespace-nowrap px-1.5 py-0.5 rounded text-[9px] font-bold ${o.type === 'stage' ? 'bg-rose-500/25 text-rose-200' : 'bg-cyan-500/20 text-cyan-200'}">${o.type === 'stage' ? '打歌服' : '日常'}</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 leading-snug mt-0.5">${o.desc || ''}</div>
+                  ${o.type === 'stage' ? `<div class="text-[10px] text-amber-300 mt-0.5">专辑质量 +${o.stageBonus}${conc ? ` · ${conc}概念 +4` : ''}</div>` : ''}
+                  ${isOn
+                    ? `<div class="mt-1.5 w-full text-center py-1 rounded-lg bg-pink-500/25 text-pink-200 text-[11px] font-black">穿着中</div>`
+                    : owned
+                      ? `<button onclick="equipOutfit('${p.uid}', '${o.id}')" class="mt-1.5 w-full py-1 rounded-lg glass-pill text-[11px] font-black text-white hover:bg-white/15">穿上</button>`
+                      : `<button onclick="buyOutfit('${p.uid}', '${o.id}')" class="mt-1.5 w-full py-1 rounded-lg btn-luxury text-[11px] font-black text-white">购买 ¥${o.price}万</button>`}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function openEditPersonModal(uid) {
+      const p = getPersonByUid(uid);
+      if (!p) return;
+      playSound('click');
+      const modal = document.getElementById('modalBox');
+      modal.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-white">✏️ 编辑艺人档案</h3>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="flex items-center gap-4">
+            ${renderAvatarImg(p, 'w-20 h-20 rounded-2xl', false)}
+            <div class="text-[11px] text-slate-400 leading-relaxed">
+              立绘固定读取<br><code class="text-cyan-300">portraits/${(IDOL_ROSTER[p.id] || {}).file || '（无）'}/default.png</code>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] text-slate-400 block mb-1">本名 (Name)</label>
+              <input id="editPersonName" type="text" value="${p.name}" class="w-full px-3 py-2 rounded-xl bg-black/50 border border-white/20 text-xs font-bold text-white" />
+            </div>
+            <div>
+              <label class="text-[11px] text-slate-400 block mb-1">英文艺名 (Stage Name)</label>
+              <input id="editPersonStage" type="text" value="${p.stageName}" class="w-full px-3 py-2 rounded-xl bg-black/50 border border-white/20 text-xs font-bold text-pink-300" />
+            </div>
+          </div>
+
+          <button onclick="savePersonProfile('${p.uid}')" class="btn-luxury w-full py-2.5 rounded-2xl text-xs font-black text-white">
+            保存艺人档案
+          </button>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+    }
+
+    function savePersonProfile(uid) {
+      const p = getPersonByUid(uid);
+      if (!p) return;
+      const n = document.getElementById('editPersonName').value.trim();
+      const s = document.getElementById('editPersonStage').value.trim();
+      if (n) p.name = n;
+      if (s) p.stageName = s;
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      openProfileModal(uid, 'info');
+      showToast('✅ 艺人档案已保存！', 'success');
+    }
+
+    /********************************************************************
+     * 立绘素材库：按「艺人 × 服装」检查缺图，并一键复制生成提示词
+     ********************************************************************/
+    let libIdolId = 0;
+
+    // 精确路径（不含「退回 default」的兜底），用来判断这张图到底有没有放
+    function exactPortraitUrls(file, outfitId) {
+      const base = PORTRAIT_DIR + encodeURIComponent(file);
+      const urls = PORTRAIT_EXTS.map(ext => `${base}/${encodeURIComponent(outfitId)}.${ext}`);
+      if (outfitId === 'default') PORTRAIT_EXTS.forEach(ext => urls.push(`${base}.${ext}`));
+      return urls;
+    }
+
+    function probeImage(urls, cb, i = 0) {
+      if (i >= urls.length) return cb(null);
+      const im = new Image();
+      im.onload = () => cb(urls[i]);
+      im.onerror = () => probeImage(urls, cb, i + 1);
+      im.src = urls[i];
+    }
+
+    function buildPortraitPrompt(idol, outfit, lang) {
+      if (lang === 'zh') {
+        return `K-POP 女团成员游戏角色立绘，${idol.lookZh || '东亚少女，K-POP 女团练习生气质'}，身穿${outfit.promptZh || outfit.name}，站姿自然自信，膝盖以上构图，人物居中，头部位于画面上三分之一，高品质二次元游戏立绘，干净利落的线条，柔和轮廓光，深色渐变纯净背景，竖构图 2:3，细节丰富，高清`;
+      }
+      return `K-pop girl group member, game character portrait, ${idol.lookEn || 'East Asian girl, K-pop trainee look'}, wearing ${outfit.promptEn || outfit.name}, confident natural pose, knee-up composition, character centered, head in the upper third of the frame, polished anime game illustration, clean line art, soft rim light, dark gradient background, vertical 2:3, highly detailed --ar 2:3`;
+    }
+
+    function copyText(text) {
+      const fallback = () => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0;left:-999px;top:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+        showToast(ok ? '✅ 提示词已复制' : '⚠️ 复制失败，请手动选择文字', ok ? 'success' : 'warn');
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast('✅ 提示词已复制', 'success')).catch(fallback);
+      } else {
+        fallback();
+      }
+    }
+
+    function copyPortraitPrompt(idolId, outfitId, lang) {
+      const idol = IDOL_ROSTER[idolId];
+      const outfit = OUTFIT_BY_ID[outfitId];
+      if (!idol || !outfit) return;
+      playSound('click');
+      copyText(buildPortraitPrompt(idol, outfit, lang));
+    }
+
+    function checkAllDefaultPortraits() {
+      const box = document.getElementById('libAllCheck');
+      if (!box) return;
+      box.textContent = '检测中…';
+      let done = 0;
+      const missing = [];
+      IDOL_ROSTER.forEach(idol => {
+        probeImage(exactPortraitUrls(idol.file, 'default'), url => {
+          done++;
+          if (!url) missing.push(idol.stageName);
+          if (done === IDOL_ROSTER.length) {
+            box.innerHTML = missing.length
+              ? `还缺 default 立绘 <b class="text-rose-300">${missing.length}</b> 人：<span class="text-rose-300">${missing.join('、')}</span>`
+              : '<span class="text-emerald-300">全员 default 立绘已齐 ✓</span>';
+          }
+        });
+      });
+    }
+
+    function openAvatarManagerModal(idolId) {
+      if (typeof idolId === 'number' && IDOL_ROSTER[idolId]) libIdolId = idolId;
+      playSound('click');
+      const idol = IDOL_ROSTER[libIdolId] || IDOL_ROSTER[0];
+      libIdolId = idol.id;
+      const outfits = OUTFITS.filter(o => !o.only || o.only === idol.file);
+
+      document.getElementById('modalBox').innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-base font-black text-white flex items-center gap-2"><i class="fa-solid fa-images text-pink-400"></i>立绘素材库</h3>
+              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">
+                路径规则：<code class="text-cyan-300">portraits/艺名小写/服装id.png</code>（png / jpg / jpeg / webp 均可）。
+                缺哪套就退回使用 <code class="text-cyan-300">default</code>，所以可以先做 default，之后慢慢补服装。
+              </p>
+            </div>
+            <button onclick="closeModal()" class="w-8 h-8 shrink-0 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <select onchange="openAvatarManagerModal(parseInt(this.value, 10))" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-white/20 text-xs font-bold text-white">
+              ${IDOL_ROSTER.map(r => `<option value="${r.id}" ${r.id === idol.id ? 'selected' : ''}>${r.name} · ${r.stageName}</option>`).join('')}
+            </select>
+            <span id="libSummary" class="text-[11px] text-slate-400">检测中…</span>
+            <button onclick="checkAllDefaultPortraits()" class="ml-auto px-2.5 py-1 rounded-lg glass-pill text-[11px] font-bold text-cyan-300">检测全员 default</button>
+          </div>
+          <div id="libAllCheck" class="text-[11px] text-slate-400 empty:hidden"></div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[46dvh] overflow-y-auto custom-scroll pr-1">
+            ${outfits.map(o => `
+              <div class="glass-pill rounded-2xl p-2">
+                <div id="libimg_${o.id}" class="relative portrait-tall rounded-xl overflow-hidden bg-slate-900/80 flex items-center justify-center">
+                  <span class="text-[10px] text-slate-500">检测中…</span>
+                </div>
+                <div class="mt-1.5 flex items-start justify-between gap-1">
+                  <span class="text-[11px] font-black text-white leading-tight">${o.name}</span>
+                  <span id="libst_${o.id}" class="shrink-0 whitespace-nowrap text-[10px] font-bold text-slate-500">…</span>
+                </div>
+                <div class="text-[9px] text-cyan-300 break-all mt-0.5">portraits/${idol.file}/${o.id}.png</div>
+                <div class="flex gap-1 mt-1.5">
+                  <button onclick="copyPortraitPrompt(${idol.id}, '${o.id}', 'zh')" class="flex-1 py-1 rounded-lg bg-white/10 hover:bg-white/15 text-[10px] font-bold text-pink-200 whitespace-nowrap">中文提示词</button>
+                  <button onclick="copyPortraitPrompt(${idol.id}, '${o.id}', 'en')" class="flex-1 py-1 rounded-lg bg-white/10 hover:bg-white/15 text-[10px] font-bold text-cyan-200 whitespace-nowrap">English</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-3 text-[11px] text-slate-300 leading-relaxed space-y-1">
+            <div class="font-black text-white">保持同一张脸的做法</div>
+            <div>先生成并选定这个人的 <b>default</b>，再把它当参考图（Midjourney 的 <code>--cref</code>、Stable Diffusion 的 IP-Adapter、即梦 / 可灵的参考图功能）去生成其他服装，脸和发型才不会变。</div>
+            <div>每个人固定的外貌描述写在 <code>roster.js</code> 的 <code>lookZh / lookEn</code>，服装描述写在 <code>outfits.js</code>，复制提示词时会自动拼在一起。</div>
+          </div>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+
+      let found = 0, done = 0;
+      outfits.forEach(o => {
+        probeImage(exactPortraitUrls(idol.file, o.id), url => {
+          done++;
+          if (url) found++;
+          if (libIdolId !== idol.id) return;                       // 已切换到别人，丢弃结果
+          const imgBox = document.getElementById('libimg_' + o.id);
+          const st = document.getElementById('libst_' + o.id);
+          const sum = document.getElementById('libSummary');
+          if (!imgBox) return;
+          if (url) {
+            imgBox.innerHTML = `<img src="${url}" class="avatar-img" alt="${o.name}" />`;
+            st.textContent = '✓ 已收录';
+            st.className = 'shrink-0 whitespace-nowrap text-[10px] font-bold text-emerald-300';
+          } else {
+            imgBox.innerHTML = `<span class="text-[10px] text-rose-300 font-bold">缺图</span>`;
+            st.textContent = '✗ 缺失';
+            st.className = 'shrink-0 whitespace-nowrap text-[10px] font-bold text-rose-300';
+          }
+          if (sum) sum.textContent = `已收录 ${found} / ${outfits.length}${done < outfits.length ? '（检测中…）' : ''}`;
+        });
+      });
+    }
+
+    /********************************************************************
+     * 12. WEEKLY PROGRESSION ENGINE (推进下一周与年末大赏结算)
+     ********************************************************************/
+    function advanceNextWeek() {
+      playSound('click');
+      const prevYear = state.year;
+      state.dateStr = dateStrAddDays(state.dateStr, 7);
+      syncDateFields(state);
+      if (state.year > prevYear) {
+        // 跨年：年末 MAMA 大赏结算
+        if (state.totalTrophies >= 2 || state.reputation >= 260) {
+          state.daesangCount += 1;
+          state.funds += 120;
+          addTrendPost(`👑 家族荣耀！${state.agencyName} 旗下女团在年末 MAMA 颁奖典礼斩获【年度最佳女团大赏 Daesang】！`, '爆 1500万', '大赏');
+        }
+      }
+
+      state.ap = state.maxAp;
+
+      // Passive Streaming Royalties from Debuted Groups
+      const royalties = Math.round((5 + state.discography.length * 4 + state.totalFans / 15000) * 10) / 10;
+      state.funds += royalties;
+
+      // Natural Stamina Recovery for All Trainees & Idols
+      state.trainees.forEach(t => {
+        t.stamina = Math.min(100, t.stamina + 12);
+      });
+
+      // Update Active Comebacks for All Groups
+      state.groups.forEach(g => {
+        if (g.activeComeback) {
+          g.activeComeback.weeksLeft -= 1;
+          const extraSales = Math.round(g.activeComeback.sales * 0.2 * 10) / 10;
+          g.activeComeback.sales += extraSales;
+          state.funds += Math.round(extraSales * 3.5 * 10) / 10;
+          if (g.activeComeback.weeksLeft <= 0) {
+            showToast(`🎉 ${g.name}《${g.activeComeback.albumTitle}》打歌期圆满收官！总销量 ${g.activeComeback.sales.toFixed(1)}万张`, 'gold');
+            g.activeComeback = null;
+          }
+        }
+      });
+
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      showToast(`📅 进入新的一周！音源版税入账 +¥${royalties.toFixed(1)}万，行动力已回满`, 'info');
+    }
+
+    /********************************************************************
+     * 13. AGENCY SETTINGS & RESET MODALS
+     ********************************************************************/
+    function openAgencyEditModal() {
+      playSound('click');
+      const modal = document.getElementById('modalBox');
+      modal.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-white">🏢 修改经纪公司厂牌名称</h3>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <input id="agencyNameInput" type="text" value="${state.agencyName}" maxlength="16"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/20 text-sm font-black text-white" />
+          <button onclick="saveAgencyName()" class="btn-luxury w-full py-2.5 rounded-2xl text-xs font-black text-white">保存厂牌名称</button>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+    }
+
+    function saveAgencyName() {
+      const val = document.getElementById('agencyNameInput').value.trim();
+      if (val) state.agencyName = val;
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      closeModal();
+      showToast('✅ 公司名称已更新！', 'success');
+    }
+
+    function openSettingsModal() {
+      playSound('click');
+      const modal = document.getElementById('modalBox');
+      modal.innerHTML = `
+        <div class="space-y-3.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-white">⚙️ 制作人系统设置与存档管理</h3>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-full glass-pill text-slate-300 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <button onclick="openAvatarManagerModal()" class="w-full py-3 rounded-2xl glass-card-interactive text-xs font-bold text-pink-300">
+            📸 立绘素材库 / 衣橱资产
+          </button>
+          <button onclick="claimInvestment()" class="w-full py-3 rounded-2xl glass-card-interactive text-xs font-bold text-cyan-300">
+            💰 申请财阀战略投资拨款 (+¥100.0万)
+          </button>
+          <button onclick="resetAllSave()" class="w-full py-3 rounded-2xl bg-rose-500/20 border border-rose-500/40 text-xs font-bold text-rose-300">
+            🗑️ 清空当前存档重新开局
+          </button>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+    }
+
+    function claimInvestment() {
+      state.funds += 100;
+      playSound('fanfare');
+      saveState();
+      updateGlobalUI();
+      renderCurrentTab();
+      closeModal();
+      showToast('💰 战略投资款 +¥100.0万 已汇入公司账户！', 'gold');
+    }
+
+    function resetAllSave() {
+      localStorage.removeItem('STARLIGHT_AGENCY_SAVE_V2');
+      state = createInitialState();
+      saveState();
+      closeModal();
+      switchTab('scouting');
+      showToast('✨ 存档已重置，开启全新娱乐帝国企划！', 'info');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.add('hidden');
+    }
+
+    window.onload = function () {
+      updateGlobalUI();
+      renderCurrentTab();
+    };
+  </script>
+</body>
+</html>
